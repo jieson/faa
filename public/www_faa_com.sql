@@ -11,7 +11,7 @@
  Target Server Version : 80029 (8.0.29)
  File Encoding         : 65001
 
- Date: 14/05/2024 17:56:22
+ Date: 14/05/2024 18:06:06
 */
 
 SET NAMES utf8mb4;
@@ -456,6 +456,19 @@ CREATE TABLE `fa_ems`  (
 
 -- ----------------------------
 -- Records of fa_ems
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for fa_mj_test
+-- ----------------------------
+DROP TABLE IF EXISTS `fa_mj_test`;
+CREATE TABLE `fa_mj_test`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of fa_mj_test
 -- ----------------------------
 
 -- ----------------------------
