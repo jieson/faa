@@ -11,7 +11,7 @@
  Target Server Version : 80029 (8.0.29)
  File Encoding         : 65001
 
- Date: 14/05/2024 18:06:06
+ Date: 23/05/2024 20:21:44
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `fa_admin`  (
 -- ----------------------------
 -- Records of fa_admin
 -- ----------------------------
-INSERT INTO `fa_admin` VALUES (1, 'admin', 'Admin', '9c40546c6a0d42cf20cd745d68875015', '44e047', 'http://www.faa.com/assets/img/avatar.png', 'admin@admin.com', '', 0, 1715509045, '127.0.0.1', 1491635035, 1715509045, 'afccd8d5-bb14-4a84-92d4-7aec4fd1ac5c', 'normal');
+INSERT INTO `fa_admin` VALUES (1, 'admin', '管理员boss', '9c40546c6a0d42cf20cd745d68875015', '44e047', 'http://www.faa.com/assets/img/avatar.png', 'admin@admin.com', '', 0, 1716464368, '127.0.0.1', 1491635035, 1716464368, 'efd67d33-216e-45a8-9918-59b4f5bb4270', 'normal');
 
 -- ----------------------------
 -- Table structure for fa_admin_log
@@ -62,7 +62,7 @@ CREATE TABLE `fa_admin_log`  (
   `createtime` bigint NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`username` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '管理员日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 74 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '管理员日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_admin_log
@@ -78,6 +78,68 @@ INSERT INTO `fa_admin_log` VALUES (8, 1, 'admin', '/ZHqYpmsotr.php/index/login',
 INSERT INTO `fa_admin_log` VALUES (9, 1, 'admin', '/ZHqYpmsotr.php/addon/install', '插件管理', '{\"name\":\"ygame\",\"force\":\"0\",\"uid\":\"85636\",\"token\":\"***\",\"version\":\"1.1.3\",\"faversion\":\"1.5.0.20240328\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715452650);
 INSERT INTO `fa_admin_log` VALUES (10, 1, 'admin', '/ZHqYpmsotr.php/addon/state', '插件管理 / 禁用启用', '{\"name\":\"ygame\",\"action\":\"enable\",\"force\":\"0\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715452651);
 INSERT INTO `fa_admin_log` VALUES (11, 1, 'admin', '/ZHqYpmsotr.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"admin\",\"password\":\"***\",\"captcha\":\"H6LF\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1715509045);
+INSERT INTO `fa_admin_log` VALUES (12, 1, 'admin', '/ZHqYpmsotr.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"admin\",\"password\":\"***\",\"captcha\":\"KPLA\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715687956);
+INSERT INTO `fa_admin_log` VALUES (13, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688414);
+INSERT INTO `fa_admin_log` VALUES (14, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_test\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688419);
+INSERT INTO `fa_admin_log` VALUES (15, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/command', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"command\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688446);
+INSERT INTO `fa_admin_log` VALUES (16, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/execute', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"execute\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688451);
+INSERT INTO `fa_admin_log` VALUES (17, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688914);
+INSERT INTO `fa_admin_log` VALUES (18, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_test\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688923);
+INSERT INTO `fa_admin_log` VALUES (19, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/command', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"command\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688938);
+INSERT INTO `fa_admin_log` VALUES (20, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/execute', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"execute\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688940);
+INSERT INTO `fa_admin_log` VALUES (21, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/command', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"command\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688954);
+INSERT INTO `fa_admin_log` VALUES (22, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/execute', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"execute\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715688956);
+INSERT INTO `fa_admin_log` VALUES (23, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715689343);
+INSERT INTO `fa_admin_log` VALUES (24, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715689808);
+INSERT INTO `fa_admin_log` VALUES (25, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_test\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715689814);
+INSERT INTO `fa_admin_log` VALUES (26, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/command', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"command\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715689816);
+INSERT INTO `fa_admin_log` VALUES (27, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/execute', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"crud\",\"isrelation\":\"0\",\"local\":\"1\",\"delete\":\"0\",\"force\":\"0\",\"table\":\"fa_test\",\"controller\":\"\",\"model\":\"\",\"setcheckboxsuffix\":\"\",\"enumradiosuffix\":\"\",\"imagefield\":\"\",\"filefield\":\"\",\"intdatesuffix\":\"\",\"switchsuffix\":\"\",\"citysuffix\":\"\",\"selectpagesuffix\":\"\",\"selectpagessuffix\":\"\",\"ignorefields\":\"\",\"sortfield\":\"\",\"editorsuffix\":\"\",\"headingfilterfield\":\"\",\"tagsuffix\":\"\",\"jsonsuffix\":\"\",\"fixedcolumns\":\"\",\"action\":\"execute\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715689819);
+INSERT INTO `fa_admin_log` VALUES (28, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715689898);
+INSERT INTO `fa_admin_log` VALUES (29, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690191);
+INSERT INTO `fa_admin_log` VALUES (30, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"1\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690208);
+INSERT INTO `fa_admin_log` VALUES (31, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690236);
+INSERT INTO `fa_admin_log` VALUES (32, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"3\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690245);
+INSERT INTO `fa_admin_log` VALUES (33, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690247);
+INSERT INTO `fa_admin_log` VALUES (34, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690254);
+INSERT INTO `fa_admin_log` VALUES (35, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/command', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"menu\",\"allcontroller\":\"0\",\"delete\":\"0\",\"force\":\"0\",\"controllerfile_text\":\"\",\"controllerfile\":\"Test.php\",\"action\":\"command\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690258);
+INSERT INTO `fa_admin_log` VALUES (36, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/execute', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"menu\",\"allcontroller\":\"0\",\"delete\":\"0\",\"force\":\"0\",\"controllerfile_text\":\"\",\"controllerfile\":\"Test.php\",\"action\":\"execute\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690262);
+INSERT INTO `fa_admin_log` VALUES (37, 1, 'admin', '/ZHqYpmsotr.php/test/multi', '测试管理 / 批量更新', '{\"action\":\"\",\"ids\":\"1\",\"params\":\"switch=0\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690733);
+INSERT INTO `fa_admin_log` VALUES (38, 1, 'admin', '/ZHqYpmsotr.php/test/multi', '测试管理 / 批量更新', '{\"action\":\"\",\"ids\":\"1\",\"params\":\"switch=1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690735);
+INSERT INTO `fa_admin_log` VALUES (39, 1, 'admin', '/ZHqYpmsotr.php/test/multi', '测试管理 / 批量更新', '{\"action\":\"\",\"ids\":\"1\",\"params\":\"switch=0\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690739);
+INSERT INTO `fa_admin_log` VALUES (40, 1, 'admin', '/ZHqYpmsotr.php/test/multi', '测试管理 / 批量更新', '{\"action\":\"\",\"ids\":\"1\",\"params\":\"switch=1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690741);
+INSERT INTO `fa_admin_log` VALUES (41, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690796);
+INSERT INTO `fa_admin_log` VALUES (42, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"1\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715690802);
+INSERT INTO `fa_admin_log` VALUES (43, 1, 'admin', '/ZHqYpmsotr.php/general.profile/update', '常规管理 / 个人资料 / 更新个人信息', '{\"__token__\":\"***\",\"row\":{\"avatar\":\"http:\\/\\/www.faa.com\\/assets\\/img\\/avatar.png\",\"email\":\"admin@admin.com\",\"nickname\":\"管理员boss\",\"password\":\"***\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715707634);
+INSERT INTO `fa_admin_log` VALUES (44, 1, 'admin', '/ZHqYpmsotr.php/general.profile/update', '常规管理 / 个人资料 / 更新个人信息', '{\"__token__\":\"***\",\"row\":{\"avatar\":\"http:\\/\\/www.faa.com\\/assets\\/img\\/avatar.png\",\"email\":\"admin@admin.com\",\"nickname\":\"管理员boss\",\"password\":\"***\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715707671);
+INSERT INTO `fa_admin_log` VALUES (45, 1, 'admin', '/ZHqYpmsotr.php/ajax/upload', '', '{\"category\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715773190);
+INSERT INTO `fa_admin_log` VALUES (46, 1, 'admin', '/ZHqYpmsotr.php/ygame/project/add?dialog=1', '报名系统 / 赛事管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"project_name\":\"第一个测试赛事\",\"start_time\":\"2024-05-15 19:38:51\",\"end_time\":\"2024-05-19 19:38:54\",\"game_time\":\"2024-05-30 19:39:00\",\"game_address\":\"南天门\",\"min_team_num\":\"1\",\"image\":\"\\/uploads\\/20240515\\/9467fad63608835514ad8de19753499d.png\",\"agreement\":\"赛事协议，需要确认\",\"content\":\"赛事介绍\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715773227);
+INSERT INTO `fa_admin_log` VALUES (47, 1, 'admin', '/ZHqYpmsotr.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"admin\",\"password\":\"***\",\"captcha\":\"Lt5P\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1715889658);
+INSERT INTO `fa_admin_log` VALUES (48, 1, 'admin', '/ZHqYpmsotr.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"admin\",\"password\":\"***\",\"captcha\":\"VBPm\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1716023830);
+INSERT INTO `fa_admin_log` VALUES (49, 1, 'admin', '/ZHqYpmsotr.php/index/login?url=/ZHqYpmsotr.php/Test/test1', '登录', '{\"url\":\"\\/ZHqYpmsotr.php\\/Test\\/test1\",\"__token__\":\"***\",\"username\":\"admin\",\"password\":\"***\",\"captcha\":\"34MT\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716036696);
+INSERT INTO `fa_admin_log` VALUES (50, 1, 'admin', '/ZHqYpmsotr.php/auth/group/roletree', '权限管理 / 角色组', '{\"pid\":\"1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037115);
+INSERT INTO `fa_admin_log` VALUES (51, 1, 'admin', '/ZHqYpmsotr.php/auth/group/roletree', '权限管理 / 角色组', '{\"pid\":\"2\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037125);
+INSERT INTO `fa_admin_log` VALUES (52, 1, 'admin', '/ZHqYpmsotr.php/auth/group/roletree', '权限管理 / 角色组', '{\"pid\":\"1\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037140);
+INSERT INTO `fa_admin_log` VALUES (53, 1, 'admin', '/ZHqYpmsotr.php/command/execute/ids/2', '在线命令管理 / 再次执行命令', '{\"ids\":\"2\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037282);
+INSERT INTO `fa_admin_log` VALUES (54, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037331);
+INSERT INTO `fa_admin_log` VALUES (55, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"1\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037346);
+INSERT INTO `fa_admin_log` VALUES (56, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037357);
+INSERT INTO `fa_admin_log` VALUES (57, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037359);
+INSERT INTO `fa_admin_log` VALUES (58, 1, 'admin', '/ZHqYpmsotr.php/command/del', '在线命令管理 / 删除', '{\"action\":\"del\",\"ids\":\"3\",\"params\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037369);
+INSERT INTO `fa_admin_log` VALUES (59, 1, 'admin', '/ZHqYpmsotr.php/command/get_field_list', '在线命令管理', '{\"table\":\"fa_admin\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037381);
+INSERT INTO `fa_admin_log` VALUES (60, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"1\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037383);
+INSERT INTO `fa_admin_log` VALUES (61, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037387);
+INSERT INTO `fa_admin_log` VALUES (62, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"3\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037388);
+INSERT INTO `fa_admin_log` VALUES (63, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037390);
+INSERT INTO `fa_admin_log` VALUES (64, 1, 'admin', '/ZHqYpmsotr.php/command/get_controller_list', '在线命令管理', '{\"q_word\":[\"\"],\"pageNumber\":\"2\",\"pageSize\":\"10\",\"andOr\":\"OR \",\"orderBy\":[[\"name\",\"ASC\"]],\"searchTable\":\"tbl\",\"showField\":\"name\",\"keyField\":\"id\",\"searchField\":[\"name\"],\"name\":\"\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037392);
+INSERT INTO `fa_admin_log` VALUES (65, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/command', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"menu\",\"allcontroller\":\"0\",\"delete\":\"0\",\"force\":\"0\",\"controllerfile_text\":\"\",\"controllerfile\":\"Test.php\",\"action\":\"command\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037396);
+INSERT INTO `fa_admin_log` VALUES (66, 1, 'admin', '/ZHqYpmsotr.php/command/command/action/execute', '在线命令管理 / 生成并执行命令', '{\"commandtype\":\"menu\",\"allcontroller\":\"0\",\"delete\":\"0\",\"force\":\"0\",\"controllerfile_text\":\"\",\"controllerfile\":\"Test.php\",\"action\":\"execute\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716037398);
+INSERT INTO `fa_admin_log` VALUES (67, 1, 'admin', '/ZHqYpmsotr.php/addon/config?name=ygame&dialog=1', '插件管理 / 配置', '{\"name\":\"ygame\",\"dialog\":\"1\",\"row\":{\"mp\":\"{&quot;app_id&quot;:&quot;&quot;,&quot;app_secret&quot;:&quot;&quot;}\",\"mini\":\"{&quot;app_id&quot;:&quot;wx23096791898f1652&quot;,&quot;app_secret&quot;:&quot;fa98ded3593567059ec6b9e67c726098&quot;}\",\"order_expire\":\"10\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716115107);
+INSERT INTO `fa_admin_log` VALUES (68, 1, 'admin', '/ZHqYpmsotr.php/addon/config?name=ygame&dialog=1', '插件管理 / 配置', '{\"name\":\"ygame\",\"dialog\":\"1\",\"row\":{\"mp\":\"{&quot;app_id&quot;:&quot;&quot;,&quot;app_secret&quot;:&quot;&quot;}\",\"mini\":\"{&quot;app_id&quot;:&quot;wxc0f2a184911d1572&quot;,&quot;app_secret&quot;:&quot;4548c5353d2a96d4ff72e20dbdb5aa63&quot;}\",\"order_expire\":\"10\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 1716117790);
+INSERT INTO `fa_admin_log` VALUES (69, 1, 'admin', '/zHqYpmsotr.php/index/login', '登录', '{\"__token__\":\"***\",\"username\":\"admin\",\"password\":\"***\",\"captcha\":\"SFDU\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716464368);
+INSERT INTO `fa_admin_log` VALUES (70, 1, 'admin', '/zHqYpmsotr.php/ygame/project/add?dialog=1', '报名系统 / 赛事管理 / 添加', '{\"dialog\":\"1\",\"row\":{\"project_name\":\"第二个测试赛事\",\"start_time\":\"2024-05-22 19:40:38\",\"end_time\":\"2024-05-24 19:40:47\",\"game_time\":\"2024-05-25 19:40:57\",\"game_address\":\"待定\",\"min_team_num\":\"1\",\"image\":\"\\/uploads\\/20240512\\/171edc4efdf16e402c191f6087808f0f.png\",\"agreement\":\"赛事协议\",\"content\":\"赛事介绍\",\"status\":\"1\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716464500);
+INSERT INTO `fa_admin_log` VALUES (71, 1, 'admin', '/zHqYpmsotr.php/ygame/project/edit/ids/2?dialog=1', '报名系统 / 赛事管理 / 编辑', '{\"dialog\":\"1\",\"row\":{\"project_name\":\"第二个测试赛事\",\"start_time\":\"2024-05-22 19:40:38\",\"end_time\":\"2024-05-24 19:40:47\",\"game_time\":\"2024-05-25 19:40:57\",\"game_address\":\"待定\",\"min_team_num\":\"1\",\"image\":\"\\/uploads\\/20240515\\/9467fad63608835514ad8de19753499d.png\",\"agreement\":\"赛事协议\",\"content\":\"赛事介绍\",\"status\":\"1\"},\"ids\":\"2\"}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716464531);
+INSERT INTO `fa_admin_log` VALUES (72, 1, 'admin', '/zHqYpmsotr.php/ygame/group/add?project_id=2&dialog=1', '报名系统 / 组别管理 / 添加', '{\"project_id\":\"2\",\"dialog\":\"1\",\"row\":{\"project_id\":\"2\",\"group_name\":\"少儿男子组\",\"sign\":\"说明\",\"price\":\"0\",\"num\":\"1000\",\"allow_team\":\"1\",\"team_price\":\"0\",\"weigh\":\"0\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716464701);
+INSERT INTO `fa_admin_log` VALUES (73, 1, 'admin', '/zHqYpmsotr.php/ygame/group/add?project_id=2&dialog=1', '报名系统 / 组别管理 / 添加', '{\"project_id\":\"2\",\"dialog\":\"1\",\"row\":{\"project_id\":\"2\",\"group_name\":\"少儿女子组\",\"sign\":\"说明\",\"price\":\"0\",\"num\":\"2000\",\"allow_team\":\"1\",\"team_price\":\"0\",\"weigh\":\"0\"}}', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.289 Safari/537.36', 1716464720);
 
 -- ----------------------------
 -- Table structure for fa_area
@@ -98,7 +160,7 @@ CREATE TABLE `fa_area`  (
   `lat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '纬度',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pid`(`pid` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '地区表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '地区表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_area
@@ -128,12 +190,13 @@ CREATE TABLE `fa_attachment`  (
   `storage` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'local' COMMENT '存储位置',
   `sha1` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '文件 sha1编码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '附件表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '附件表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_attachment
 -- ----------------------------
 INSERT INTO `fa_attachment` VALUES (1, '', 1, 0, '/assets/img/qrcode.png', '150', '150', 'png', 0, 'qrcode.png', 21859, 'image/png', '', 1491635035, 1491635035, 1491635035, 'local', '17163603d0263e4838b9387ff2cd4877e8b018f6');
+INSERT INTO `fa_attachment` VALUES (2, '', 1, 0, '/uploads/20240515/9467fad63608835514ad8de19753499d.png', '1024', '1536', 'png', 0, '00009-587031355-ultra detailed 8k cg, kimono, perfect face, beautiful face, mature female,   chest,p', 2168506, 'image/png', '', 1715773190, 1715773190, 1715773190, 'local', 'a075cb2a101260974a0c6740f6f3d7beb80a8576');
 
 -- ----------------------------
 -- Table structure for fa_auth_group
@@ -203,7 +266,7 @@ CREATE TABLE `fa_auth_rule`  (
   UNIQUE INDEX `name`(`name` ASC) USING BTREE,
   INDEX `pid`(`pid` ASC) USING BTREE,
   INDEX `weigh`(`weigh` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 128 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '节点表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 137 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '节点表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_auth_rule
@@ -333,6 +396,15 @@ INSERT INTO `fa_auth_rule` VALUES (124, 'file', 118, 'ygame/result/import', '批
 INSERT INTO `fa_auth_rule` VALUES (125, 'file', 118, 'ygame/result/design', '设计电子成绩证书', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sjdzcjzs', 'shejidianzichengjizhengshu', 1715452646, 1715452646, 0, 'normal');
 INSERT INTO `fa_auth_rule` VALUES (126, 'file', 93, 'ygame/record', '报名记录', 'fa fa-braille', '', '', '', 0, NULL, '', 'bmjl', 'baomingjilu', 1715452646, 1715452646, 0, 'normal');
 INSERT INTO `fa_auth_rule` VALUES (127, 'file', 126, 'ygame/record/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1715452646, 1715452646, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (128, 'file', 0, 'test', '测试管理', 'fa fa-circle-o', '', '', '', 1, NULL, '', 'csgl', 'ceshiguanli', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (129, 'file', 128, 'test/index', '查看', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zk', 'zhakan', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (130, 'file', 128, 'test/recyclebin', '回收站', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hsz', 'huishouzhan', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (131, 'file', 128, 'test/add', '添加', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'tj', 'tianjia', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (132, 'file', 128, 'test/edit', '编辑', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'bj', 'bianji', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (133, 'file', 128, 'test/del', '删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'sc', 'shanchu', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (134, 'file', 128, 'test/destroy', '真实删除', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'zssc', 'zhenshishanchu', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (135, 'file', 128, 'test/restore', '还原', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'hy', 'huanyuan', 1715690261, 1715690261, 0, 'normal');
+INSERT INTO `fa_auth_rule` VALUES (136, 'file', 128, 'test/multi', '批量更新', 'fa fa-circle-o', '', '', '', 0, NULL, '', 'plgx', 'pilianggengxin', 1715690261, 1715690261, 0, 'normal');
 
 -- ----------------------------
 -- Table structure for fa_category
@@ -390,11 +462,14 @@ CREATE TABLE `fa_command`  (
   `updatetime` bigint UNSIGNED NULL DEFAULT NULL COMMENT '更新时间',
   `status` enum('successed','failured') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'failured' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '在线命令表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '在线命令表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_command
 -- ----------------------------
+INSERT INTO `fa_command` VALUES (1, 'crud', '[\"--table=fa_test\"]', 'php think crud --table=fa_test', 'Build Successed', 1715689818, 1715689818, 1715689818, 'successed');
+INSERT INTO `fa_command` VALUES (2, 'menu', '[\"--controller=Test\"]', 'php think menu --controller=Test', 'Build Successed!', 1715690261, 1715690261, 1715690262, 'successed');
+INSERT INTO `fa_command` VALUES (4, 'menu', '[\"--controller=Test\"]', 'php think menu --controller=Test', 'SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column \'title\' at row 1', 1716037398, 1716037398, 1716037398, 'failured');
 
 -- ----------------------------
 -- Table structure for fa_config
@@ -452,7 +527,7 @@ CREATE TABLE `fa_ems`  (
   `ip` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'IP',
   `createtime` bigint NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '邮箱验证码表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '邮箱验证码表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ems
@@ -484,7 +559,7 @@ CREATE TABLE `fa_sms`  (
   `ip` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT 'IP',
   `createtime` bigint UNSIGNED NULL DEFAULT 0 COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '短信验证码表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '短信验证码表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_sms
@@ -537,7 +612,7 @@ CREATE TABLE `fa_test`  (
 -- ----------------------------
 -- Records of fa_test
 -- ----------------------------
-INSERT INTO `fa_test` VALUES (1, 1, 1, 12, '12,13', '互联网,计算机', 'monday', 'hot,index', 'male', 'music,reading', '我是一篇测试文章', '<p>我是测试内容</p>', '/assets/img/avatar.png', '/assets/img/avatar.png,/assets/img/qrcode.png', '/assets/img/avatar.png', '关键字', '我是一篇测试文章描述，内容过多时将自动隐藏', '广西壮族自治区/百色市/平果县', '[\"a\",\"b\"]', '{\"a\":\"1\",\"b\":\"2\"}', '[{\"title\":\"标题一\",\"intro\":\"介绍一\",\"author\":\"小明\",\"age\":\"21\"}]', 0.00, 0, '2020-10-01 00:00:00 - 2021-10-31 23:59:59', '2017-07-10', '2017-07-10 18:24:45', 2017, '18:24:45', 1491635035, 1491635035, 1491635035, NULL, 0, 1, 'normal', '1');
+INSERT INTO `fa_test` VALUES (1, 1, 1, 12, '12,13', '互联网,计算机', 'monday', 'hot,index', 'male', 'music,reading', '我是一篇测试文章', '<p>我是测试内容</p>', '/assets/img/avatar.png', '/assets/img/avatar.png,/assets/img/qrcode.png', '/assets/img/avatar.png', '关键字', '我是一篇测试文章描述，内容过多时将自动隐藏', '广西壮族自治区/百色市/平果县', '[\"a\",\"b\"]', '{\"a\":\"1\",\"b\":\"2\"}', '[{\"title\":\"标题一\",\"intro\":\"介绍一\",\"author\":\"小明\",\"age\":\"21\"}]', 0.00, 0, '2020-10-01 00:00:00 - 2021-10-31 23:59:59', '2017-07-10', '2017-07-10 18:24:45', 2017, '18:24:45', 1491635035, 1491635035, 1715690741, NULL, 0, 1, 'normal', '1');
 
 -- ----------------------------
 -- Table structure for fa_user
@@ -576,12 +651,14 @@ CREATE TABLE `fa_user`  (
   INDEX `username`(`username` ASC) USING BTREE,
   INDEX `email`(`email` ASC) USING BTREE,
   INDEX `mobile`(`mobile` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_user
 -- ----------------------------
 INSERT INTO `fa_user` VALUES (1, 1, 'admin', 'admin', 'e6e8433fc4af1a1a5af5f66b3a1e246b', '377e71', 'admin@163.com', '13000000000', 'http://www.faa.com/assets/img/avatar.png', 0, 0, '2017-04-08', '', 0.00, 0, 1, 1, 1491635035, 1491635035, '127.0.0.1', 0, '127.0.0.1', 1491635035, 0, 1491635035, '', 'normal', '');
+INSERT INTO `fa_user` VALUES (2, 0, 'huiyuan', 'huiyuan', '67311f085d439a70bf00a1ada9bf5fe2', 'CI0Phm', '317572877@qq.com', '13136310001', '', 1, 0, NULL, '', 0.00, 0, 1, 1, 1715707468, 1716453708, '127.0.0.1', 0, '127.0.0.1', 1715707468, 1715707468, 1716453708, '', 'normal', '');
+INSERT INTO `fa_user` VALUES (3, 0, 'wx3', '新用户', '99124503afa7df05bea827c40469df77', 'ugz4fD', 'wx3@www.faa.com', '', '', 1, 0, NULL, '', 0.00, 0, 1, 1, 1716463662, 1716464242, '127.0.0.1', 0, '127.0.0.1', 1716463661, 1716463661, 1716464242, '', 'normal', '');
 
 -- ----------------------------
 -- Table structure for fa_user_group
@@ -615,7 +692,7 @@ CREATE TABLE `fa_user_money_log`  (
   `memo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   `createtime` bigint NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员余额变动表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员余额变动表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_user_money_log
@@ -668,7 +745,7 @@ CREATE TABLE `fa_user_score_log`  (
   `memo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   `createtime` bigint NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员积分变动表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员积分变动表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_user_score_log
@@ -689,6 +766,10 @@ CREATE TABLE `fa_user_token`  (
 -- ----------------------------
 -- Records of fa_user_token
 -- ----------------------------
+INSERT INTO `fa_user_token` VALUES ('4c294a43a551e64b439401ac22fa80aa6c617306', 3, 1716463661, 1719055661);
+INSERT INTO `fa_user_token` VALUES ('ab5a4237cbfaa665ba39094c48e71a2da5662cc5', 3, 1716463662, 1719055662);
+INSERT INTO `fa_user_token` VALUES ('bb693e074df4f4c543035f38c8ca132d6d6d624e', 2, 1716453708, 1719045708);
+INSERT INTO `fa_user_token` VALUES ('e02fe0227ecf203aeeede34acfda8fe13bc2c960', 3, 1716464242, 1719056242);
 
 -- ----------------------------
 -- Table structure for fa_version
@@ -707,7 +788,7 @@ CREATE TABLE `fa_version`  (
   `weigh` int NOT NULL DEFAULT 0 COMMENT '权重',
   `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '版本表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '版本表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_version
@@ -724,7 +805,7 @@ CREATE TABLE `fa_ygame_ads`  (
   `weigh` int NOT NULL DEFAULT 0 COMMENT '权重',
   `createtime` int NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '轮播图' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '轮播图' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_ads
@@ -743,7 +824,7 @@ CREATE TABLE `fa_ygame_article`  (
   `author` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '作者',
   `createtime` int NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_article
@@ -763,7 +844,7 @@ CREATE TABLE `fa_ygame_cert`  (
   `createtime` int NOT NULL,
   `updatetime` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '证书表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '证书表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_cert
@@ -786,11 +867,13 @@ CREATE TABLE `fa_ygame_group`  (
   `createtime` int NOT NULL COMMENT '添加时间',
   `updatetime` int NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '组别表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '组别表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_group
 -- ----------------------------
+INSERT INTO `fa_ygame_group` VALUES (1, 2, '少儿男子组', '说明', 0.00, 1000, 1, 0.00, 0, 1716464701, 1716464701);
+INSERT INTO `fa_ygame_group` VALUES (2, 2, '少儿女子组', '说明', 0.00, 2000, 1, 0.00, 0, 1716464720, 1716464720);
 
 -- ----------------------------
 -- Table structure for fa_ygame_order
@@ -809,11 +892,13 @@ CREATE TABLE `fa_ygame_order`  (
   `status` int NOT NULL DEFAULT 1 COMMENT '-1已关闭 1已下单 2已支付',
   `createtime` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '支付订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '支付订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_order
 -- ----------------------------
+INSERT INTO `fa_ygame_order` VALUES (1, 1, 2, '2024052319465488385', '2024052319465488385', 3, 0.00, 1, 1716464814, 2, 1716464814);
+INSERT INTO `fa_ygame_order` VALUES (2, 2, 2, '2024052319502174859', '2024052319502174859', 3, 0.00, 1, 1716465021, 2, 1716465021);
 
 -- ----------------------------
 -- Table structure for fa_ygame_person
@@ -828,11 +913,12 @@ CREATE TABLE `fa_ygame_person`  (
   `createtime` int NOT NULL,
   `updatetime` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '人员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '人员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_person
 -- ----------------------------
+INSERT INTO `fa_ygame_person` VALUES (1, 3, '团队成员名字2', '13136310002', '371323198909246312', 1716464981, 1716464981);
 
 -- ----------------------------
 -- Table structure for fa_ygame_project
@@ -853,11 +939,13 @@ CREATE TABLE `fa_ygame_project`  (
   `status` int NOT NULL COMMENT '状态：1上线 0草稿箱',
   `createtime` int NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '赛事表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '赛事表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_project
 -- ----------------------------
+INSERT INTO `fa_ygame_project` VALUES (1, '第一个测试赛事', 1715773131, 1716118734, '2024-05-30 19:39:00', '南天门', '/uploads/20240515/9467fad63608835514ad8de19753499d.png', '赛事协议，需要确认', 1, '赛事介绍', 0, 1, 1715773227);
+INSERT INTO `fa_ygame_project` VALUES (2, '第二个测试赛事', 1716378038, 1716550847, '2024-05-25 19:40:57', '待定', '/uploads/20240515/9467fad63608835514ad8de19753499d.png', '赛事协议', 1, '赛事介绍', 0, 1, 1716464500);
 
 -- ----------------------------
 -- Table structure for fa_ygame_record
@@ -876,11 +964,13 @@ CREATE TABLE `fa_ygame_record`  (
   `price` decimal(10, 2) NOT NULL COMMENT '报名费',
   `status` int NOT NULL DEFAULT 0 COMMENT '0未支付  1已报名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '报名详情表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '报名详情表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_record
 -- ----------------------------
+INSERT INTO `fa_ygame_record` VALUES (1, 2, 1, 1, 1, 0, '小程序用户1', '13136310001', '371323198909246311', 0.00, 1);
+INSERT INTO `fa_ygame_record` VALUES (2, 2, 2, 2, 2, 1, '团队成员名字2', '13136310002', '371323198909246312', 0.00, 1);
 
 -- ----------------------------
 -- Table structure for fa_ygame_result
@@ -897,7 +987,7 @@ CREATE TABLE `fa_ygame_result`  (
   `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '赛号',
   `result` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '成绩',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_result
@@ -917,11 +1007,12 @@ CREATE TABLE `fa_ygame_team`  (
   `createtime` int NOT NULL,
   `updatetime` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_team
 -- ----------------------------
+INSERT INTO `fa_ygame_team` VALUES (1, 3, 2, '团队名称1', '团队负责人小王1', '13836310001', 1716465021, 1716465021);
 
 -- ----------------------------
 -- Table structure for fa_ygame_wechat
@@ -939,10 +1030,11 @@ CREATE TABLE `fa_ygame_wechat`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `platform`(`openid` ASC) USING BTREE,
   INDEX `user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_wechat
 -- ----------------------------
+INSERT INTO `fa_ygame_wechat` VALUES (1, 3, 'mini', 'oKtsU7XIXCsHTQyqBw3cNmFe3Wrk', '新用户', '', 1716463661, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
