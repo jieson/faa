@@ -380,8 +380,10 @@ if (!function_exists('check_cors_request')) {
             $domainArr = explode(',', config('fastadmin.cors_request_domain'));
             $domainArr[] = request()->host(true);
             if (in_array("*", $domainArr) || in_array($_SERVER['HTTP_ORIGIN'], $domainArr) || (isset($info['host']) && in_array($info['host'], $domainArr))) {
+            //    echo '!!!!';
                 header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
             } else {
+             //   echo '!!!!跨域检测无效';
                 $response = Response::create('跨域检测无效', 'html', 403);
                 throw new HttpResponseException($response);
             }
