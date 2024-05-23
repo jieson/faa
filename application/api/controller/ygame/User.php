@@ -77,8 +77,18 @@ class User extends Api
         ];
 
         $app = Factory::miniProgram($options);
-        $sns = $app->auth->session($code);
+        $params = [
+            'appid' => $app['config']['app_id'],
+            'secret' => $app['config']['secret'],
+            'js_code' => $code,
+            'grant_type' => 'authorization_code',
+        ];
 
+//        print_r($config).'<br>';
+//        print_r($config).'<br>';
+//        print_r($params).'<br>';
+        $sns = $app->auth->session($code);
+//        print_r($sns);
         if(!empty($sns['openid'])){
 
             $result = [
@@ -101,7 +111,7 @@ class User extends Api
 
             $this->error(__('Operation failed'));
         }
-        $this->error(__('Operation failed'));
+        $this->error(__('Operation failed'),null,$sns['errcode']);
     }
 
     /**
