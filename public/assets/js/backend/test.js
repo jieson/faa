@@ -1,5 +1,6 @@
 define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
 
+    console.log(Config.demo123);
     var Controller = {
         index: function () {
             // 初始化表格参数配置
