@@ -56,7 +56,10 @@ class Test extends Backend
 //        //渲染管理员对象
 //        $this->assign('admin', Session::get('admin'));
         $this->assign('ceshi123', '测试123');
-        $this->assignconfig('demo123',['token'=>$this->auth->token]);
+        $this->assignconfig('demo123',[
+            'token'=>$this->auth->token,
+            'userid'=>$this->auth->id,
+        ]);
     }
 
 
