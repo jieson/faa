@@ -119,6 +119,54 @@ class Project extends Api
         }
     }
 
+    /**
+     * 个人通过代表队报名
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function submit_fromteam(){
+        $project_id = $this->request->post('project_id');
+        $group_id = $this->request->post('group_id');
+        $name = $this->request->post('name');
+        $mobile = $this->request->post('mobile');
+        $idcard = $this->request->post('idcard');
+        $team_id = $this->request->post('team_id');
+
+        $project = new \addons\ygame\service\Project();
+        if(!$projectInfo = $project->getProjectInfo(['id'=>$project_id,'status'=>1])){
+            $this->error('当前赛事不存在');
+        }
+
+        $groupModel = new \addons\ygame\service\Group();
+        if(!$groupInfo = $groupModel->getGroupInfo(['id'=>$group_id,'project_id'=>$project_id])){
+            $this->error('当前组别不存在');
+        }
+
+        $data['type'] = 1;
+        $data['project_id'] = $project_id;
+        $data['group_id'] = $group_id;
+        $data['name'] = $name;
+        $data['mobile'] = $mobile;
+        $data['idcard'] = $idcard;
+        $data['order_no'] = date("YmdHis").rand(10000,99999);
+        $data['user_id'] = $this->auth->id;
+        $data['price'] = $groupInfo['price'];
+        $data['team_id'] = $team_id;
+
+        $wechatUser = new Wechat();
+        $wechatUserInfo = $wechatUser->where(['user_id'=>$this->auth->id])->find();
+        if(empty($wechatUserInfo['openid'])){
+            $this->error('当前用户信息有误，请稍候再试');
+        }
+
+        if($result = $project->submit($data)){
+            $this->success('请求成功',$result);
+        }else{
+            $this->error($project->error);
+        }
+    }
+
 
     /**
      * 团队报名
@@ -147,11 +195,11 @@ class Project extends Api
         $data['team_leader'] = $team_leader;
         $data['team_mobile'] = $team_mobile;
 
-        $wechatUser = new Wechat();
-        $wechatUserInfo = $wechatUser->where(['user_id'=>$this->auth->id])->find();
-        if(empty($wechatUserInfo['openid'])){
-            $this->error('当前用户信息有误，请稍候再试');
-        }
+//        $wechatUser = new Wechat();
+//        $wechatUserInfo = $wechatUser->where(['user_id'=>$this->auth->id])->find();
+//        if(empty($wechatUserInfo['openid'])){
+//            $this->error('当前用户信息有误，请稍候再试');
+//        }
 
         if($result = $project->team_submit($data)){
             $this->success('报名成功',$result);
