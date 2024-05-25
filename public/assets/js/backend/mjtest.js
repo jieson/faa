@@ -31,6 +31,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'user_name', title: __('User_name'), operate: 'LIKE'},
                         {field: 'leader_name', title: __('Leader_name'), operate: 'LIKE'},
                         {field: 'title', title: __('Title'), operate: 'LIKE'},
+                        {field: 'user.username', title: __('User.username'), operate: 'LIKE'},
+                        {field: 'user.nickname', title: __('User.nickname'), operate: 'LIKE'},
+                        {field: 'user.mobile', title: __('User.mobile'), operate: 'LIKE'},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]
