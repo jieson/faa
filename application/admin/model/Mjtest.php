@@ -37,4 +37,8 @@ class Mjtest extends Model
 
 
 
+    public function user()
+    {
+        return $this->belongsTo('User', 'leader_id', 'id', [], 'LEFT')->setEagerlyType(0);
+    }
 }
