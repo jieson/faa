@@ -247,6 +247,7 @@ class Project
                 'mobile'=>$data['mobile'],
                 'idcard'=>$data['idcard'],
                 'price'=>$data['price'],
+                'user_id'=>$data['user_id'],
                 'status'=>$data['price']<=0?1:0
             ])){
                 Db::rollback();
@@ -358,6 +359,7 @@ class Project
                 'mobile'=>$data['mobile'],
                 'idcard'=>$data['idcard'],
                 'price'=>$data['price'],
+                'user_id'=>$data['user_id'],
                 'status'=>$data['price']<=0?1:0
             ])){
                 Db::rollback();
