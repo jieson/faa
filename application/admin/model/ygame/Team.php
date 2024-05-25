@@ -37,4 +37,14 @@ class Team extends Model
 
 
 
+    public function project()
+    {
+        return $this->belongsTo('Project', 'project_id', 'id', [], 'LEFT')->setEagerlyType(0);
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo('app\admin\model\User', 'trainer_id', 'id', [], 'LEFT')->setEagerlyType(0);
+    }
 }

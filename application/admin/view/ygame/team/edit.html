@@ -9,7 +9,7 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Project_id')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-project_id" data-rule="required" data-source="project/index" class="form-control selectpage" name="row[project_id]" type="text" value="{$row.project_id|htmlentities}">
+            <input id="c-project_id" data-rule="required" data-source="ygame/project/index" class="form-control selectpage" name="row[project_id]" type="text" value="{$row.project_id|htmlentities}">
         </div>
     </div>
     <div class="form-group">
@@ -33,13 +33,7 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Trainer_id')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-trainer_id" data-rule="required" data-source="trainer/index" class="form-control selectpage" name="row[trainer_id]" type="text" value="{$row.trainer_id|htmlentities}">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Trainer_name')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input id="c-trainer_name" class="form-control" name="row[trainer_name]" type="text" value="{$row.trainer_name|htmlentities}">
+            <input id="c-trainer_id" data-rule="required" data-source="user/user/index" data-field="nickname" class="form-control selectpage" name="row[trainer_id]" type="text" value="{$row.trainer_id|htmlentities}">
         </div>
     </div>
     <div class="form-group layer-footer">
