@@ -11,7 +11,7 @@
  Target Server Version : 80029 (8.0.29)
  File Encoding         : 65001
 
- Date: 26/05/2024 05:34:36
+ Date: 26/05/2024 18:19:20
 */
 
 SET NAMES utf8mb4;
@@ -1114,7 +1114,7 @@ CREATE TABLE `fa_user`  (
 -- ----------------------------
 INSERT INTO `fa_user` VALUES (1, 1, 'admin', 'admin', 'e6e8433fc4af1a1a5af5f66b3a1e246b', '377e71', 'admin@163.com', '13000000000', 'http://www.faa.com/assets/img/avatar.png', 0, 0, '2017-04-08', '', 0.00, 0, 1, 1, 1491635035, 1491635035, '127.0.0.1', 0, '127.0.0.1', 1491635035, 0, 1491635035, '', 'normal', '');
 INSERT INTO `fa_user` VALUES (2, 2, 'huiyuan', '肖领队', '67311f085d439a70bf00a1ada9bf5fe2', 'CI0Phm', '317572877@qq.com', '13136310001', '', 1, 0, NULL, '', 0.00, 0, 1, 1, 1715707468, 1716453708, '127.0.0.1', 0, '127.0.0.1', 1715707468, 1715707468, 1716644339, '', 'normal', '');
-INSERT INTO `fa_user` VALUES (3, 0, 'wx3', '新用户', '99124503afa7df05bea827c40469df77', 'ugz4fD', 'wx3@www.faa.com', '', '', 1, 0, NULL, '', 0.00, 0, 2, 2, 1716647159, 1716660510, '127.0.0.1', 0, '127.0.0.1', 1716463661, 1716463661, 1716660510, '', 'normal', '');
+INSERT INTO `fa_user` VALUES (3, 0, 'wx3', '新用户', '99124503afa7df05bea827c40469df77', 'ugz4fD', 'wx3@www.faa.com', '', '', 1, 0, NULL, '', 0.00, 0, 2, 2, 1716679487, 1716714169, '127.0.0.1', 0, '127.0.0.1', 1716463661, 1716463661, 1716714169, '', 'normal', '');
 INSERT INTO `fa_user` VALUES (4, 0, 'huiyuan2', '会员2', '2e5cb3820a3ca0e057b39d7451168a75', '6Y3N5l', '317572872@qq.com', '15136310002', '', 1, 0, NULL, '', 0.00, 0, 1, 1, 1716468076, 1716468076, '127.0.0.1', 0, '127.0.0.1', 1716468076, 1716468076, 1716468253, '', 'normal', '');
 INSERT INTO `fa_user` VALUES (5, 0, 'wx5', '新用户', '57a6334942937a9755bcda5a7ddaedba', '6ICr8a', 'wx5@www.faa.com', '', '', 1, 0, NULL, '', 0.00, 0, 2, 2, 1716656752, 1716657738, '127.0.0.1', 0, '127.0.0.1', 1716650862, 1716650862, 1716657738, '', 'normal', '');
 
@@ -1234,9 +1234,11 @@ INSERT INTO `fa_user_token` VALUES ('3c01456d087ba47cdddf08b9b43f5091f6eed028', 
 INSERT INTO `fa_user_token` VALUES ('4c294a43a551e64b439401ac22fa80aa6c617306', 3, 1716463661, 1719055661);
 INSERT INTO `fa_user_token` VALUES ('63529653aa519682cfde8b31eb5d8ff9ad485ac9', 3, 1716660510, 1719252510);
 INSERT INTO `fa_user_token` VALUES ('819f462018857ae8c3c3ae17eee983b5756a8d85', 5, 1716656752, 1719248752);
+INSERT INTO `fa_user_token` VALUES ('9891a9476b1f452c4035a096312ec491c0064dac', 3, 1716714169, 1719306169);
 INSERT INTO `fa_user_token` VALUES ('a859a887e58c3db7d73fe3354c74b31329a2d8e3', 5, 1716650862, 1719242862);
 INSERT INTO `fa_user_token` VALUES ('ab5a4237cbfaa665ba39094c48e71a2da5662cc5', 3, 1716463662, 1719055662);
 INSERT INTO `fa_user_token` VALUES ('bb1068863a846a1620f8ea101126f74de6713cce', 3, 1716647159, 1719239159);
+INSERT INTO `fa_user_token` VALUES ('cfcb49e13cb8ec208b388cdfd0a4eb2602d8d471', 3, 1716679487, 1719271487);
 INSERT INTO `fa_user_token` VALUES ('e02fe0227ecf203aeeede34acfda8fe13bc2c960', 3, 1716464242, 1719056242);
 INSERT INTO `fa_user_token` VALUES ('e4420b29678b2fe3315e1a1eb69813b74cd9ca9c', 5, 1716650862, 1719242862);
 
@@ -1360,19 +1362,20 @@ CREATE TABLE `fa_ygame_order`  (
   `pay_time` int NULL DEFAULT NULL COMMENT '支付时间',
   `status` int NOT NULL DEFAULT 1 COMMENT '-1已关闭 1已下单 2已支付',
   `createtime` int NOT NULL,
-  `team_id` int NOT NULL COMMENT '代表队ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '支付订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '支付订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_order
 -- ----------------------------
-INSERT INTO `fa_ygame_order` VALUES (1, 1, 2, '2024052319465488385', '2024052319465488385', 3, 0.00, 1, 1716464814, 2, 1716464814, 0);
-INSERT INTO `fa_ygame_order` VALUES (2, 2, 2, '2024052319502174859', '2024052319502174859', 3, 0.00, 1, 1716465021, 2, 1716465021, 0);
-INSERT INTO `fa_ygame_order` VALUES (3, 2, 2, '2024052602420469853', '2024052602420469853', 3, 0.00, 1, 1716662524, 2, 1716662524, 0);
-INSERT INTO `fa_ygame_order` VALUES (4, 2, 2, '2024052603102548714', '2024052603102548714', 3, 0.00, 1, 1716664226, 2, 1716664226, 0);
-INSERT INTO `fa_ygame_order` VALUES (5, 1, 2, '2024052605300483282', '2024052605300483282', 3, 0.00, 1, 1716672604, 2, 1716672604, 0);
-INSERT INTO `fa_ygame_order` VALUES (6, 1, 2, '2024052605312964636', '2024052605312964636', 3, 0.00, 1, 1716672689, 2, 1716672689, 0);
+INSERT INTO `fa_ygame_order` VALUES (1, 1, 2, '2024052319465488385', '2024052319465488385', 3, 0.00, 1, 1716464814, 2, 1716464814);
+INSERT INTO `fa_ygame_order` VALUES (2, 2, 2, '2024052319502174859', '2024052319502174859', 3, 0.00, 1, 1716465021, 2, 1716465021);
+INSERT INTO `fa_ygame_order` VALUES (3, 2, 2, '2024052602420469853', '2024052602420469853', 3, 0.00, 1, 1716662524, 2, 1716662524);
+INSERT INTO `fa_ygame_order` VALUES (4, 2, 2, '2024052603102548714', '2024052603102548714', 3, 0.00, 1, 1716664226, 2, 1716664226);
+INSERT INTO `fa_ygame_order` VALUES (5, 1, 2, '2024052605300483282', '2024052605300483282', 3, 0.00, 1, 1716672604, 2, 1716672604);
+INSERT INTO `fa_ygame_order` VALUES (6, 1, 2, '2024052605312964636', '2024052605312964636', 3, 0.00, 1, 1716672689, 2, 1716672689);
+INSERT INTO `fa_ygame_order` VALUES (7, 1, 2, '2024052607432058832', '2024052607432058832', 3, 0.00, 1, 1716680600, 2, 1716680600);
+INSERT INTO `fa_ygame_order` VALUES (8, 1, 2, '2024052607573692537', '2024052607573692537', 3, 0.00, 1, 1716681456, 2, 1716681456);
 
 -- ----------------------------
 -- Table structure for fa_ygame_person
@@ -1386,7 +1389,7 @@ CREATE TABLE `fa_ygame_person`  (
   `idcard` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `createtime` int NOT NULL,
   `updatetime` int NOT NULL,
-  `team_id` int NULL DEFAULT NULL COMMENT '代表队ID暂时可空后面替换userid的作用',
+  `admin_id` int NULL DEFAULT NULL COMMENT '机构ID',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '人员表' ROW_FORMAT = Dynamic;
 
@@ -1441,20 +1444,22 @@ CREATE TABLE `fa_ygame_record`  (
   `mobile` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '手机号',
   `idcard` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '身份证',
   `price` decimal(10, 2) NOT NULL COMMENT '报名费',
-  `status` int NOT NULL DEFAULT 0 COMMENT '0未支付  1已报名',
+  `status` int NOT NULL DEFAULT 0 COMMENT '0未支付  1已报名  2已通过',
   `user_id` int NULL DEFAULT NULL COMMENT '监护人ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '报名详情表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '报名详情表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fa_ygame_record
 -- ----------------------------
 INSERT INTO `fa_ygame_record` VALUES (1, 2, 1, 1, 1, 0, '小程序用户1', '13136310001', '371323198909246311', 0.00, 1, 3);
 INSERT INTO `fa_ygame_record` VALUES (2, 2, 2, 2, 2, 1, '团队成员名字2', '13136310002', '371323198909246312', 0.00, 1, 3);
-INSERT INTO `fa_ygame_record` VALUES (3, 2, 3, 2, 1, 1, '未报名人3', '13100003333', '371323198909241111', 0.00, 1, 3);
+INSERT INTO `fa_ygame_record` VALUES (3, 2, 3, 2, 1, 1, '报名人3', '13100003333', '371323198909241111', 0.00, 1, 3);
 INSERT INTO `fa_ygame_record` VALUES (4, 2, 4, 2, 2, 1, '未报4', '13166668888', '371323198909242222', 0.00, 1, 0);
 INSERT INTO `fa_ygame_record` VALUES (5, 2, 5, 1, 1, 0, '个人', '13136310010', '371323198909241234', 0.00, 1, 0);
-INSERT INTO `fa_ygame_record` VALUES (6, 2, 6, 1, 1, 0, '我爱罗', '13136310013', '371323198909241221', 0.00, 1, NULL);
+INSERT INTO `fa_ygame_record` VALUES (6, 2, 6, 1, 1, 0, '我爱罗', '13136310013', '371323198909241221', 0.00, 1, 3);
+INSERT INTO `fa_ygame_record` VALUES (7, 2, 7, 1, 1, 0, '弟弟', '13152526323', '371323198909246556', 0.00, 1, 3);
+INSERT INTO `fa_ygame_record` VALUES (8, 2, 8, 1, 1, 2, '等待', '13136329854', '371323198909245874', 0.00, 1, 3);
 
 -- ----------------------------
 -- Table structure for fa_ygame_result
