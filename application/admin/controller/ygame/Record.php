@@ -3,6 +3,7 @@
 namespace app\admin\controller\ygame;
 
 use app\common\controller\Backend;
+use think\Console;
 
 /**
  * 报名详情管理
@@ -26,6 +27,11 @@ class Record extends Backend
      */
     protected $dataLimit = 'auth';
 
+
+    /**
+     * 是否是关联查询
+     */
+    protected $relationSearch = true;
     /**
      * 数据限制字段
      */
