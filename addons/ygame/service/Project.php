@@ -161,7 +161,23 @@ class Project
         }
 
     }
-
+    /**
+     * JM 测试查adminid通过teamid.  应该放在teamid模型上，以后再改，调用也不应该在server内部
+     * @param $id
+     * @return bool
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getAdminidFromTeamid($id){
+        $teamModel = new \app\admin\model\ygame\Team();
+        if(!$teamModel = $teamModel->where(['id'=>$id])->find()){
+            $this->error = "队伍异常，请稍候再试";
+            return false;
+        }else{
+            return $teamModel['admin_id'];
+        }
+    }
 
     /**
      * 个人报名
@@ -289,7 +305,7 @@ class Project
             'name'=>'require',
             'mobile'=>'require',
             'team_id'=>'require',
-            'admin_id'=>'require',
+//            'admin_id'=>'require',
         ]);
         $msg = [
             'type.require' => '名称必须',
@@ -301,7 +317,7 @@ class Project
             'mobile.require'        => '请输入手机号',
             'idcard.require'        => '请输入身份证号',
             'team_id.require'        => '代表队信息异常',
-            'admin_id.require'        => '机构信息异常',
+//            'admin_id.require'        => '机构信息异常',
         ];
         if (!$validate->check($data,$msg)) {
             $this->error = $validate->getError();
@@ -322,6 +338,13 @@ class Project
             ->find())
         {
             $this->error = "当前身份证已经报名或正在报名";
+            return false;
+        }
+
+        //放adminid
+        $admin_id = $this->getAdminidFromTeamid($data['team_id']);
+        if (! $admin_id ){
+            $this->error = "找不到对应机构";
             return false;
         }
 
@@ -357,7 +380,7 @@ class Project
                 'group_id'=>$data['group_id'],
                 'order_id'=>$orderModel->id,
                 'team_id'=>$data['team_id'],
-                'admin_id'=>$data['admin_id'],
+                'admin_id'=>$admin_id,
                 'name'=>$data['name'],
                 'mobile'=>$data['mobile'],
                 'idcard'=>$data['idcard'],
