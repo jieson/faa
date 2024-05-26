@@ -160,7 +160,7 @@ class Project extends Api
             $this->error('当前用户信息有误，请稍候再试');
         }
 
-        if($result = $project->submit($data)){
+        if($result = $project->submit_fromteam($data)){
             $this->success('请求成功',$result);
         }else{
             $this->error($project->error);
