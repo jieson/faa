@@ -289,6 +289,7 @@ class Project
             'name'=>'require',
             'mobile'=>'require',
             'team_id'=>'require',
+            'admin_id'=>'require',
         ]);
         $msg = [
             'type.require' => '名称必须',
@@ -300,6 +301,7 @@ class Project
             'mobile.require'        => '请输入手机号',
             'idcard.require'        => '请输入身份证号',
             'team_id.require'        => '代表队信息异常',
+            'admin_id.require'        => '机构信息异常',
         ];
         if (!$validate->check($data,$msg)) {
             $this->error = $validate->getError();
@@ -355,6 +357,7 @@ class Project
                 'group_id'=>$data['group_id'],
                 'order_id'=>$orderModel->id,
                 'team_id'=>$data['team_id'],
+                'admin_id'=>$data['admin_id'],
                 'name'=>$data['name'],
                 'mobile'=>$data['mobile'],
                 'idcard'=>$data['idcard'],
