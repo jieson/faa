@@ -51,7 +51,7 @@ class Team extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
             $list = $this->model
-                    ->with(['project','user'])
+                    ->with(['project','user','admin'])
                     ->where($where)
                     ->order($sort, $order)
                     ->paginate($limit);
@@ -60,6 +60,7 @@ class Team extends Backend
                 
                 $row->getRelation('project')->visible(['project_name']);
 				$row->getRelation('user')->visible(['nickname']);
+				$row->getRelation('admin')->visible(['nickname']);
             }
 
             $result = array("total" => $list->total(), "rows" => $list->items());
