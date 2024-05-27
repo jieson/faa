@@ -45,7 +45,7 @@ function makeqr_submit($projectid, $teamid)
 
     $access_token = getAccessToken($appid, $appsecret);
 // 生成小程序码
-    $code = createMiniProgramQRCode($path, $width, $access_token);
+    $code = createMiniProgramQRCode($scene, $width, $access_token);
 
     // 将二进制图片数据保存为文件
     $filename = 'code.png';
