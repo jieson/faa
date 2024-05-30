@@ -10,7 +10,7 @@ use app\common\controller\Api;
 class Article extends Api
 {
     // 无需登录的接口,*表示全部
-    protected $noNeedLogin = [];
+    protected $noNeedLogin = ['*'];
     // 无需鉴权的接口,*表示全部
     protected $noNeedRight = ['*'];
 

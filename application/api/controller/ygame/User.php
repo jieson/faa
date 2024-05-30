@@ -105,6 +105,9 @@ class User extends Api
                     'user_id'=> $userinfo['user_id'],
                     'group_id'=> $user['group_id'],
                     'token'  => $userinfo['token'],
+                    'nickname'  => $user['nickname'],
+                    'username'  => $user['username'],
+                    'mobile'  => $user['mobile'],
                 ];
                 $this->success(__('Logged in successful'), $data);
             }
