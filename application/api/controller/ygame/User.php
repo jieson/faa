@@ -108,6 +108,7 @@ class User extends Api
                     'nickname'  => $user['nickname'],
                     'username'  => $user['username'],
                     'mobile'  => $user['mobile'],
+                    'lastteam_id'  => $user['lastteam_id'],
                 ];
                 $this->success(__('Logged in successful'), $data);
             }
