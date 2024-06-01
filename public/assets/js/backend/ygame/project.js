@@ -73,6 +73,33 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     icon: 'fa fa-file-text-o',
                                     url: 'ygame/result/index?project_id={id}'
                                 },
+                                {
+                                    name: 'detail',
+                                    title: __('报名汇总表'),
+                                    text:'报名汇总表',
+                                    classname: 'btn btn-xs btn-success btn-addtabs',
+                                    extend:'data-area=\'["1100px","700px"]\'',
+                                    icon: 'fa fa-folder-o',
+                                    url: 'ygame/record/index?project_id={id}'
+                                },
+                                {
+                                    name: 'detail',
+                                    title: __('出发顺序表'),
+                                    text:'出发顺序表',
+                                    classname: 'btn btn-xs btn-success btn-dialog',
+                             //       extend:'data-area=\'["1100px","700px"]\'',
+                                    icon: 'fa fa-folder-o',
+                                    url: 'ygame/record/index?project_id={id}'
+                                },
+                                {
+                                    name: 'detail',
+                                    title: __('日程表'),
+                                    text:'日程表',
+                                    classname: 'btn btn-xs btn-success btn-',
+                                    extend:'data-area=\'["1100px","700px"]\'',
+                                    icon: 'fa fa-folder-o',
+                                    url: 'ygame/record/index?project_id={id}'
+                                },
 
                                 {
                                     name: 'detail',
