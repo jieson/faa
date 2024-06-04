@@ -40,6 +40,51 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'project.project_name', title: __('Project.project_name'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
                         {field: 'user.nickname', title: __('User.nickname'), operate: 'LIKE'},
                         {field: 'admin.nickname', title: __('Admin.nickname'), operate: 'LIKE'},
+                        {
+                            field: 'buttons',
+                            width: "120px",
+                            title: __('按钮组'),
+                            table: table,
+                            events: Table.api.events.operate,
+                            buttons: [
+                                {
+                                    name: 'detail',
+                                    text: __('邀请码'),
+                                    title: 'team_name',
+                                    extend:'data-area=\'["500px","500px"]\'',
+                                    classname: 'btn btn-xs btn-primary btn-dialog',
+                                    icon: 'fa fa-list',
+                                    url: 'http://47.98.190.29/qrcreat.php?project_id={project_id}&team_id={id}',
+                                    callback: function (data) {
+                                        // Layer.alert(data, {title: "回传数据"});
+                                    },
+                                    visible: function (row) {
+                                        //返回true时按钮显示,返回false隐藏
+                                        return true;
+                                    }
+                                },
+                                // {
+                                //     name: 'ajax',
+                                //     text: __('发送Ajax'),
+                                //     title: __('发送Ajax'),
+                                //     classname: 'btn btn-xs btn-success btn-magic btn-ajax',
+                                //     icon: 'fa fa-magic',
+                                //     url: 'example/bootstraptable/detail',
+                                //     confirm: '确认发送',
+                                //     success: function (data, ret) {
+                                //         Layer.alert(ret.msg + ",返回数据：" + JSON.stringify(data));
+                                //         //如果需要阻止成功提示，则必须使用return false;
+                                //         //return false;
+                                //     },
+                                //     error: function (data, ret) {
+                                //         console.log(data, ret);
+                                //         Layer.alert(ret.msg);
+                                //         return false;
+                                //     }
+                                // },
+                            ],
+                            formatter: Table.api.formatter.buttons
+                        },
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]

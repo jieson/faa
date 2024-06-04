@@ -2,7 +2,20 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
 
     console.log(Config);
-
+    //  getBirthdayFromIdCard : function(idCard) {
+    //     var birthday = "";
+    //     if(idCard != null && idCard != ""){
+    //         if(idCard.length == 15){
+    //             birthday = "19"+idCard.substr(6,6);
+    //         } else if(idCard.length == 18){
+    //             birthday = idCard.substr(6,8);
+    //         }
+    //
+    //         birthday = birthday.replace(/(.{4})(.{2})/,"$1-$2-");
+    //     }
+    //
+    //     return birthday;
+    // };
     var Controller = {
         index: function () {
             // 初始化表格参数配置
@@ -45,10 +58,56 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
                         {field: 'name', title: __('Name'), operate: 'LIKE'},
-                        {field: 'grouplist', title: __('测试'), formatter: function (value, row, index) {
-                                // console.log('value:'+value);
-                                // console.log(row);
-                                // console.log(index);
+                        {field: 'idcard', title: __('组别规则'), formatter: function (value, row, index) {
+
+
+                                //获取生日
+                                var birthday = "";
+                                if(value != null && value != ""){
+                                    if(value.length == 15){
+                                        birthday = "19"+value.substr(6,6);
+                                    } else if(value.length == 18){
+                                        birthday = value.substr(6,8);
+                                    }
+                                    // birthday = birthday.replace(/(.{4})(.{2})/,"$1-$2-");
+                                }
+                                // 获取年龄
+                                const today = new  Date();
+                                let year =  birthday.substring(0,4);
+                                let age= today.getFullYear() - parseInt(year);
+                                //根据年龄生成组别
+                                if (age >= 35){
+                                    return '少年甲组年龄';
+                                }else if (age <35){
+                                    return '幼儿组';
+                                }
+                                return age;
+                            }},
+                        {field: 'group_ids', title: __('项目描述'), formatter: function (value, row, index) {
+                                console.log('value:'+value);
+
+                                //项目数组
+                                if (value == null || value == ""){
+                                    return"无";
+                                }
+                                var groupArray = value.split(',');
+                                var grouptextArray = [];
+                                //
+                                console.log(row.grouplist);
+
+                                for (var j = 0; j<groupArray.length; j++){
+                                    var valueGroupId = groupArray[j];
+                                    for (var i = 0; i < row.grouplist.length; i++) {
+                                        // console.log(Object.prototype.toString.call(row.grouplis.[0]).slice(8, -1));
+                                        let iddd = row.grouplist[i].id;
+                                        console.log(iddd);
+                                        if (iddd == valueGroupId){
+                                            let grou =  row.grouplist[i].group_name;
+                                            grouptextArray.push(grou)
+                                        }
+                                    }
+                                }
+                                return grouptextArray;
                             }},
                         {field: 'mobile', title: __('Mobile'), operate: 'LIKE'},
                         {field: 'idcard', title: __('Idcard'), operate: 'LIKE'},
