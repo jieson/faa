@@ -25,6 +25,6 @@ return [
     'Sexdata'          => '性别',
     'Sexdata male'     => '男',
     'Sexdata female'   => '女',
-    'Team.team_name'   => '团队名称',
+    'Team.team_name'   => '参赛队伍',
     'Group.group_name' => '组别名称'
 ];

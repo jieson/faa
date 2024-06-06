@@ -16,6 +16,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
     //
     //     return birthday;
     // };
+
+
     var Controller = {
         index: function () {
             // 初始化表格参数配置
@@ -58,7 +60,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {checkbox: true},
                         {field: 'id', title: __('Id')},
                         {field: 'name', title: __('Name'), operate: 'LIKE'},
-                        {field: 'idcard', title: __('组别规则'), formatter: function (value, row, index) {
+                        {field: 'idcard', title: __('组别'), formatter: function (value, row, index) {
 
 
                                 //获取生日
@@ -75,15 +77,25 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 const today = new  Date();
                                 let year =  birthday.substring(0,4);
                                 let age= today.getFullYear() - parseInt(year);
+                                let birthInt=  parseInt(birthday);
+                                //获取性别
+                                const sexCode = value.charAt(16);
+                                const sex = parseInt(sexCode, 10) % 2 === 0 ? '女' : '男';
                                 //根据年龄生成组别
-                                if (age >= 35){
-                                    return '少年甲组年龄';
-                                }else if (age <35){
+                                if (birthInt >= 20190101){
                                     return '幼儿组';
+                                }else if (birthInt >=20170101){
+                                    return sex+'少年丁组';
+                                }else if (birthInt >=20150101){
+                                    return sex+'少年丙组';
+                                }else if (birthInt >=20130101){
+                                    return sex+'少年乙组';
+                                }else {
+                                    return sex+'少年甲组';
                                 }
-                                return age;
+                                return birthInt;
                             }},
-                        {field: 'group_ids', title: __('项目描述'), formatter: function (value, row, index) {
+                        {field: 'group_ids', title: __('比赛项目'), formatter: function (value, row, index) {
                                 console.log('value:'+value);
 
                                 //项目数组
@@ -116,8 +128,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'numid', title: __('Numid')},
                         {field: 'sexdata', title: __('Sexdata'), searchList: {"male":__('Sexdata male'),"female":__('Sexdata female')}, formatter: Table.api.formatter.normal},
                         {field: 'team.team_name', title: __('Team.team_name'), operate: 'LIKE'},
-                        {field: 'group.group_name', title: __('Group.group_name'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
+                        // {field: 'group.group_name', title: __('Group.group_name'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
+                        // {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]
             });

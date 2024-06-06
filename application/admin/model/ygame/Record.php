@@ -30,7 +30,8 @@ class Record extends Model
     protected $append = [
         'status_text',
         'sexdata_text',
-        'grouplist'
+        'grouplist',
+        'refund_time_text'
     ];
     
 
@@ -93,4 +94,16 @@ class Record extends Model
     {
         return $this->belongsTo('Group', 'group_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
+
+    public function getRefundTimeTextAttr($value, $data)
+    {
+        $value = $value ? $value : (isset($data['refund_time']) ? $data['refund_time'] : '');
+        return is_numeric($value) ? date("Y-m-d H:i:s", $value) : $value;
+    }
+
+    protected function setRefundTimeAttr($value)
+    {
+        return $value === '' ? null : ($value && !is_numeric($value) ? strtotime($value) : $value);
+    }
+
 }
