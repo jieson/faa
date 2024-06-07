@@ -17,7 +17,23 @@ class Record extends Backend
      * @var \app\admin\model\ygame\Record
      */
     protected $model = null;
+    /**
+     * 是否开启数据限制
+     * 支持auth/personal
+     * 表示按权限判断/仅限个人
+     * 默认为禁用,若启用请务必保证表中存在admin_id字段
+     */
+    protected $dataLimit = 'auth';
 
+
+    /**
+     * 是否是关联查询
+     */
+    protected $relationSearch = true;
+    /**
+     * 数据限制字段
+     */
+    protected $dataLimitField = 'admin_id';
     public function _initialize()
     {
         parent::_initialize();
@@ -58,17 +74,18 @@ class Record extends Backend
                 return $this->selectpage();
             }
 
-            $params = $this->request->param();
+            $project_id = $this->request->param('project_id');
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
             $list = $this->model
                     ->with(['team','group'])
                     ->where($where)
+                    ->where(['record.project_id'=>$project_id])
                     ->order($sort, $order)
                     ->paginate($limit);
 
+
             // 获取关联模型 group 的特定记录
-            $project_id = $this->request->param('project_id');
             $grmodel = new \app\admin\model\ygame\Group;
             $groupRecords = $grmodel->where('project_id', $project_id)->field('id, group_name')->select();
 //            $groupArray = collection($groupRecords)->toArray();
