@@ -2,7 +2,7 @@
 
 return [
     'Project_id'   => '赛事ID',
-    'Group_name'   => '组别名称',
+    'Group_name'   => '项目名称',
     'Sign'         => '说明',
     'Price'        => '报名费',
     'Num'          => '总人数',

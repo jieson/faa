@@ -384,6 +384,8 @@ class Project
                 'name'=>$data['name'],
                 'mobile'=>$data['mobile'],
                 'idcard'=>$data['idcard'],
+                'idcard_image'=>$data['idcard_image'],
+                'baoxian_image'=>$data['baoxian_image'],
                 'price'=>$data['price'],
                 'user_id'=>$data['user_id'],
                 'status'=>$data['price']<=0?1:0

@@ -40,7 +40,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     title: __('文章管理'),
                                     text:'文章管理',
                                     classname: 'btn btn-xs btn-default btn-dialog',
-                                    extend:'data-area=\'["1000px","700px"]\'',
+
                                     icon: 'fa fa-th-list ',
                                     url: 'ygame/article/index?project_id={id}'
                                 },
@@ -95,10 +95,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     name: 'detail',
                                     title: __('日程表'),
                                     text:'日程表',
-                                    classname: 'btn btn-xs btn-success btn-',
+                                    classname: 'btn btn-xs btn-success btn-dialog',
                                     extend:'data-area=\'["1100px","700px"]\'',
                                     icon: 'fa fa-folder-o',
-                                    url: 'ygame/record/index?project_id={id}'
+                                    url: 'ygame/fenzu/index?project_id={id}'
                                 },
 
                                 {

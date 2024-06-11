@@ -132,6 +132,8 @@ class Project extends Api
         $mobile = $this->request->post('mobile');
         $idcard = $this->request->post('idcard');
         $team_id = $this->request->post('team_id');
+        $idcard_image = $this->request->post('idcard_pic');
+        $baoxian_image = $this->request->post('baoxian_pic');
 
         $project = new \addons\ygame\service\Project();
         if(!$projectInfo = $project->getProjectInfo(['id'=>$project_id,'status'=>1])){
@@ -153,6 +155,8 @@ class Project extends Api
         $data['user_id'] = $this->auth->id;
         $data['price'] = $groupInfo['price'];
         $data['team_id'] = $team_id;
+        $data['idcard_image'] = $idcard_image;
+        $data['baoxian_image'] = $baoxian_image;
 
         $wechatUser = new Wechat();
         $wechatUserInfo = $wechatUser->where(['user_id'=>$this->auth->id])->find();
