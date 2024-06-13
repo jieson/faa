@@ -134,6 +134,12 @@ class Project extends Api
         $team_id = $this->request->post('team_id');
         $idcard_image = $this->request->post('idcard_pic');
         $baoxian_image = $this->request->post('baoxian_pic');
+        // 替换 html 规则造成的自动替换，应该有更好的方法，以后再更换
+        $search = "&amp;";
+        $replace = "&";
+        $idcard_image = str_replace($search, $replace, $idcard_image);
+        $baoxian_image = str_replace($search, $replace, $baoxian_image);
+
 
         $project = new \addons\ygame\service\Project();
         if(!$projectInfo = $project->getProjectInfo(['id'=>$project_id,'status'=>1])){

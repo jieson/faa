@@ -127,6 +127,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'group_ids', title: __('Group_ids'), operate: 'LIKE'},
                         {field: 'numid', title: __('Numid')},
                         {field: 'sexdata', title: __('Sexdata'), searchList: {"male":__('Sexdata male'),"female":__('Sexdata female')}, formatter: Table.api.formatter.normal},
+                        {field: 'idcard_image', title: __('Idcard_image'), operate: false, events: Table.api.events.image, formatter: Table.api.formatter.image},
+                        {field: 'baoxian_image', title: __('Baoxian_image'), operate: false, events: Table.api.events.image, formatter: Table.api.formatter.image},
                         {field: 'team.team_name', title: __('Team.team_name'), operate: 'LIKE'},
                         // {field: 'group.group_name', title: __('Group.group_name'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
                         // {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}

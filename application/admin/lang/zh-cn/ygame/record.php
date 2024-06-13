@@ -25,6 +25,8 @@ return [
     'Sexdata'          => '性别',
     'Sexdata male'     => '男',
     'Sexdata female'   => '女',
-    'Team.team_name'   => '参赛队伍',
-    'Group.group_name' => '组别名称'
+    'Idcard_image'     => '身份证正面',
+    'Baoxian_image'    => '保险文件',
+    'Team.team_name'   => '参数队伍',
+    'Group.group_name' => '项目名称'
 ];
