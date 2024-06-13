@@ -3,18 +3,18 @@
 return [
     'autoload' => false,
     'hooks' => [
-        'user_sidenav_after' => [
-            'invite',
-        ],
-        'user_register_successed' => [
-            'invite',
-        ],
         'app_init' => [
             'qrcode',
         ],
+        'config_init' => [
+            'summernote',
+        ],
     ],
     'route' => [
-        '/invite/[:id]$' => 'invite/index/index',
+        '/example$' => 'example/index/index',
+        '/example/d/[:name]' => 'example/demo/index',
+        '/example/d1/[:name]' => 'example/demo/demo1',
+        '/example/d2/[:name]' => 'example/demo/demo2',
         '/qrcode$' => 'qrcode/index/index',
         '/qrcode/build$' => 'qrcode/index/build',
     ],
