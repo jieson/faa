@@ -378,6 +378,7 @@ class Project
                 'type'=>$data['type'],
                 'project_id'=>$data['project_id'],
                 'group_id'=>$data['group_id'],
+                'group_ids'=>$data['group_ids'],
                 'order_id'=>$orderModel->id,
                 'team_id'=>$data['team_id'],
                 'admin_id'=>$admin_id,

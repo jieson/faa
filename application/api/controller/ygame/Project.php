@@ -128,6 +128,7 @@ class Project extends Api
     public function submit_fromteam(){
         $project_id = $this->request->post('project_id');
         $group_id = $this->request->post('group_id');
+        $group_ids = $this->request->post('group_ids');
         $name = $this->request->post('name');
         $mobile = $this->request->post('mobile');
         $idcard = $this->request->post('idcard');
@@ -154,6 +155,7 @@ class Project extends Api
         $data['type'] = 1;
         $data['project_id'] = $project_id;
         $data['group_id'] = $group_id;
+        $data['group_ids'] = $group_ids;
         $data['name'] = $name;
         $data['mobile'] = $mobile;
         $data['idcard'] = $idcard;
