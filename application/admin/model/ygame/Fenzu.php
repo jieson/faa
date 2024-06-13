@@ -25,7 +25,8 @@ class Fenzu extends Model
 
     // 追加属性
     protected $append = [
-        'juesai_text'
+        'juesai_text',
+        'rule_text'
     ];
     
 
@@ -33,6 +34,11 @@ class Fenzu extends Model
     public function getJuesaiList()
     {
         return ['1' => __('Juesai 1'), '0' => __('Juesai 0')];
+    }
+
+    public function getRuleList()
+    {
+        return ['0' => __('Rule 0'), '1' => __('Rule 1'), '2' => __('Rule 2'), '3' => __('Rule 3')];
     }
 
 
@@ -44,10 +50,24 @@ class Fenzu extends Model
     }
 
 
+    public function getRuleTextAttr($value, $data)
+    {
+        $value = $value ? $value : (isset($data['rule']) ? $data['rule'] : '');
+        $list = $this->getRuleList();
+        return isset($list[$value]) ? $list[$value] : '';
+    }
+
+
 
 
     public function group()
     {
-        return $this->belongsTo('Group', 'group_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\auth\Group', 'group_id', 'id', [], 'LEFT')->setEagerlyType(0);
+    }
+
+
+    public function record()
+    {
+        return $this->belongsTo('Record', 'record_ids', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }
