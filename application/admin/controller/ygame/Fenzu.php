@@ -22,6 +22,7 @@ class Fenzu extends Backend
     {
         parent::_initialize();
         $this->model = new \app\admin\model\ygame\Fenzu;
+        $this->view->assign("zubieIdList", $this->model->getZubieIdList());
         $this->view->assign("juesaiList", $this->model->getJuesaiList());
         $this->view->assign("ruleList", $this->model->getRuleList());
     }
@@ -58,8 +59,9 @@ class Fenzu extends Backend
                     ->paginate($limit);
 
             foreach ($list as $row) {
-                
+
                 $row->getRelation('group')->visible(['name']);
+                $row->getRelation('record')->visible(['id']);
             }
 
             $result = array("total" => $list->total(), "rows" => $list->items());

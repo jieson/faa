@@ -25,12 +25,18 @@ class Fenzu extends Model
 
     // 追加属性
     protected $append = [
+        'zubie_id_text',
         'juesai_text',
         'rule_text'
     ];
     
 
     
+    public function getZubieIdList()
+    {
+        return ['0' => __('Zubie_id 0'), '1' => __('Zubie_id 1'), '2' => __('Zubie_id 2'), '3' => __('Zubie_id 3'), '4' => __('Zubie_id 4')];
+    }
+
     public function getJuesaiList()
     {
         return ['1' => __('Juesai 1'), '0' => __('Juesai 0')];
@@ -39,6 +45,14 @@ class Fenzu extends Model
     public function getRuleList()
     {
         return ['0' => __('Rule 0'), '1' => __('Rule 1'), '2' => __('Rule 2'), '3' => __('Rule 3')];
+    }
+
+
+    public function getZubieIdTextAttr($value, $data)
+    {
+        $value = $value ? $value : (isset($data['zubie_id']) ? $data['zubie_id'] : '');
+        $list = $this->getZubieIdList();
+        return isset($list[$value]) ? $list[$value] : '';
     }
 
 
@@ -62,7 +76,7 @@ class Fenzu extends Model
 
     public function group()
     {
-        return $this->belongsTo('app\admin\model\auth\Group', 'group_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('app\admin\model\ygame\Group', 'group_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 
 
