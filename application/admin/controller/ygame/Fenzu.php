@@ -59,9 +59,9 @@ class Fenzu extends Backend
                     ->paginate($limit);
 
             foreach ($list as $row) {
-
-                $row->getRelation('group')->visible(['name']);
-
+                
+                $row->getRelation('group')->visible(['group_name']);
+//				$row->getRelation('record')->visible(['numid']);
             }
 
             $result = array("total" => $list->total(), "rows" => $list->items());
