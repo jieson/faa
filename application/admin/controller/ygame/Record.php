@@ -3,6 +3,12 @@
 namespace app\admin\controller\ygame;
 
 use app\common\controller\Backend;
+use think\Db;
+use think\db\exception\BindParamException;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\Console;
+
 //use app\model\Group;
 /**
  * 报名详情管理
@@ -17,6 +23,8 @@ class Record extends Backend
      * @var \app\admin\model\ygame\Record
      */
     protected $model = null;
+
+
     /**
      * 是否开启数据限制
      * 支持auth/personal
@@ -84,12 +92,6 @@ class Record extends Backend
                     ->order($sort, $order)
                     ->paginate($limit);
 
-
-            // 获取关联模型 group 的特定记录
-            $grmodel = new \app\admin\model\ygame\Group;
-            $groupRecords = $grmodel->where('project_id', $project_id)->field('id, group_name')->select();
-//            $groupArray = collection($groupRecords)->toArray();
-
             foreach ($list as $row) {
 //                $row->visible(['id','name','mobile','idcard','status','group_ids','numid','sexdata','grouplist']);
 //                $row->visible(['team']);
@@ -103,7 +105,7 @@ class Record extends Backend
 //                $row->bind('grouplist',$groupRecords);
 //                $row->push(['group1'=>1, 'group2'=>2, 'group3'=>3]);
 //                $row->setGrouplist(['group1'=>1, 'group2'=>2, 'group3'=>3]);
-                $row->setGrouplist($groupRecords);
+//                $row->setGrouplist($groupRecords);
 //                $row.data
 //                var_dump($row);
                 //添加一项
@@ -112,12 +114,115 @@ class Record extends Backend
 //            $this->assignconfig('demo123',['token'=>$this->auth->token]);
 //            $this->assignconfig('groupRecords', ['name'=>'名']);
 //            $this->view->assign('mengjie', $groupArray);
-            $result = array("total" => $list->total(), "rows" => $list->items(), "groups"=>$groupRecords );
+            $result = array("total" => $list->total(), "rows" => $list->items() );
 
 
             return json($result);
         }
         return $this->view->fetch();
+    }
+
+    public function create($ids = '')
+    {
+        $this->success("模拟启动成功");
+    }
+    /**
+     * 构造 新数据存入
+     */
+    public function creatNewFenzuModels()
+    {
+        $fenzus = [];
+        $data = $this->request->post('rows');
+        $datas = json_decode($data,true);
+//        $this->success("请求成功",null,$datas);
+//        return json($datas);
+//        dump("下面是拿到的");
+//        dump($datas.count());
+//        dump($datas);
+
+
+//        return $datas;
+
+        Db::startTrans();
+        try {
+//            //是否采用模型验证
+//            if ($this->modelValidate) {
+//                $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+//                $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
+//                $this->model->validateFailException()->validate($validate);
+//            }
+            foreach ($datas as $element) {
+                $fenzumodel = new \app\admin\model\ygame\Fenzu();
+                $fenzumodel->data([
+                    'name'=>$element['name'],
+                    'project_id'=>$element['project_id'],
+                    'record_ids'=>$newStr = str_replace(['[',']'], "", json_encode($element['record_ids'])),
+                    'personcount'=>$element['personcount']
+                ]);
+//                $fenzumodel.record_ids = $element.record_ids;
+//                $fenzumodel['record_ids'] = $element.record_ids;
+                $fenzus[] = $fenzumodel;
+                $result = $fenzumodel->save();
+            }
+//            $result = $fenzumodel->allowField(true)->save($params);
+            Db::commit();
+        } catch (ValidateException|PDOException|Exception $e) {
+            Db::rollback();
+            $this->error($e->getMessage());
+            return ;
+        }
+        if ($result === false) {
+            $this->error(__('No rows were inserted'));
+            return ;
+        }
+        $this->success("请求成功",null,$fenzus);
+        return json($fenzus);
+
+//        return json($fenzus);
+    }
+    /**
+     * 添加
+     *
+     * @return string
+     * @throws \think\Exception
+     */
+    public function addall()
+    {
+        if (false === $this->request->isPost()) {
+            return $this->view->fetch();
+        }
+
+        $fenzus = $this->request->post('rows');
+
+
+        $params = $this->request->post('row/a');
+        if (empty($params)) {
+            $this->error(__('Parameter %s can not be empty', ''));
+        }
+        $params = $this->preExcludeFields($params);
+
+        if ($this->dataLimit && $this->dataLimitFieldAutoFill) {
+            $params[$this->dataLimitField] = $this->auth->id;
+        }
+        $result = false;
+        Db::startTrans();
+        try {
+            //是否采用模型验证
+            if ($this->modelValidate) {
+                $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+                $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
+                $this->model->validateFailException()->validate($validate);
+            }
+            $result = $this->model->allowField(true)->save($params);
+            Db::commit();
+        } catch (ValidateException|PDOException|Exception $e) {
+            Db::rollback();
+            $this->error($e->getMessage());
+        }
+        if ($result === false) {
+            $this->error(__('No rows were inserted'));
+        }
+        $this->success();
     }
 
 }

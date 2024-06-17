@@ -53,7 +53,7 @@ class Fenzu extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
             $list = $this->model
-                    ->with(['group']) //删除record 的关联，目前跟record的grouplist虚拟属性似乎有冲突
+                    ->with(['group','record']) //删除record 的关联，目前跟record的grouplist虚拟属性似乎有冲突
                     ->where($where)
                     ->order($sort, $order)
                     ->paginate($limit);
@@ -61,7 +61,7 @@ class Fenzu extends Backend
             foreach ($list as $row) {
                 
                 $row->getRelation('group')->visible(['group_name']);
-//				$row->getRelation('record')->visible(['numid']);
+				$row->getRelation('record')->visible(['numid','name']);
             }
 
             $result = array("total" => $list->total(), "rows" => $list->items());

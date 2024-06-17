@@ -30,7 +30,7 @@ class Record extends Model
     protected $append = [
         'status_text',
         'sexdata_text',
-        'grouplist',
+//        'grouplist',
         'refund_time_text'
     ];
     
@@ -45,26 +45,26 @@ class Record extends Model
     {
         return ['male' => __('Sexdata male'), 'female' => __('Sexdata female')];
     }
-    public function getGroupistAttr($value)
-    {
-        return json_decode($value, true);
-    }
-    // 设置虚拟属性的值
-    public function setGroupistAttr($value)
-    {
-        $this->grouplist = $value;
-    }
-    // 获取虚拟属性数组
-    public function getGrouplist()
-    {
-        return $this->grouplist;
-    }
-
-    // 设置虚拟属性数组
-    public function setGrouplist($value)
-    {
-        $this->grouplist = $value;
-    }
+//    public function getGroupistAttr($value)
+//    {
+//        return json_decode($value, true);
+//    }
+//    // 设置虚拟属性的值
+//    public function setGroupistAttr($value)
+//    {
+//        $this->grouplist = $value;
+//    }
+//    // 获取虚拟属性数组
+//    public function getGrouplist()
+//    {
+//        return $this->grouplist;
+//    }
+//
+//    // 设置虚拟属性数组
+//    public function setGrouplist($value)
+//    {
+//        $this->grouplist = $value;
+//    }
 
     public function getStatusTextAttr($value, $data)
     {
