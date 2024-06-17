@@ -349,6 +349,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 // data.rows.forEach(function (rowww) {
                                 //     // console.log(rowww.group_name)
                                 // });
+                                // location.href = 'ygame/fenzu/index?project_id='+projectid;
+
+                                Fast.api.open('ygame/fenzu/index?project_id='+projectid, '日程表', {
+                                    callback: function (data) {
+                                        // 回调函数，可以在此处理返回的数据
+                                    }
+                                });
                             },
                             error: function (e) {
                                 console.log('group???????')
