@@ -157,6 +157,7 @@ class Record extends Backend
                     'name'=>$element['name'],
                     'project_id'=>$element['project_id'],
                     'record_ids'=>$newStr = str_replace(['[',']'], "", json_encode($element['record_ids'])),
+                    'zucount'=>'1',
                     'personcount'=>$element['personcount']
                 ]);
 //                $fenzumodel.record_ids = $element.record_ids;
