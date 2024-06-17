@@ -26,6 +26,7 @@ return [
     'Rule 1'           => '不足六名 减一录取',
     'Rule 2'           => '合并组分男女录取名次',
     'Rule 3'           => '取前六名进决赛',
+    'Weigh'            => '权重',
     'Group.group_name' => '项目名称',
     'Record.name'      => '运动员',
     'Record.numid'     => '序号'

@@ -21,8 +21,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
                 pk: 'id',
-                sortName: 'id',
-                fixedColumns: true,
+                sortName: 'weigh',
+                // fixedColumns: true,
                 fixedRightNumber: 1,
                 columns: [
                     [
@@ -41,7 +41,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'project_id', title: __('Project_id')},
                         {field: 'record_ids', title: __('Record_ids'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
                         {field: 'rule', title: __('Rule'), searchList: {"0":__('Rule 0'),"1":__('Rule 1'),"2":__('Rule 2'),"3":__('Rule 3')}, formatter: Table.api.formatter.normal},
-                        // {field: 'group.group_name', title: __('Group.group_name'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
+                        {field: 'weigh', title: __('Weigh'), operate: false},
+                        //{field: 'group.group_name', title: __('Group.group_name'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
+                        //{field: 'record.name', title: __('Record.name'), operate: 'LIKE'},
                         {field: 'record.numid', title: __('Record.numid')},
                         {
                             field: 'buttons',

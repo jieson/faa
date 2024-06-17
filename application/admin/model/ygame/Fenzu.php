@@ -31,6 +31,14 @@ class Fenzu extends Model
     ];
     
 
+    protected static function init()
+    {
+        self::afterInsert(function ($row) {
+            $pk = $row->getPk();
+            $row->getQuery()->where($pk, $row[$pk])->update(['weigh' => $row[$pk]]);
+        });
+    }
+
     
     public function getZubieIdList()
     {
@@ -76,7 +84,7 @@ class Fenzu extends Model
 
     public function group()
     {
-        return $this->belongsTo('app\admin\model\ygame\Group', 'group_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->belongsTo('Group', 'group_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 
 
