@@ -4,6 +4,7 @@ return [
     'Id'               => 'ID',
     'Date'             => '日期',
     'Starttime'        => '开始几点',
+    'Timerange'        => '时间区间',
     'Endtime'          => '结束几点',
     'Group_id'         => '项目ID',
     'Zubie_id'         => '组别ID',
