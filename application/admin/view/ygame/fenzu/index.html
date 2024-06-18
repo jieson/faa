@@ -7,12 +7,10 @@
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
                         <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
-                        <a href="javascript:;" class="btn btn-success btn-add {:$auth->check('ygame/fenzu/add')?'':'hide'}" title="{:__('Add')}" ><i class="fa fa-plus"></i> {:__('Add')}</a>
-                        <a href="javascript:;" class="btn btn-success btn-edit btn-disabled disabled {:$auth->check('ygame/fenzu/edit')?'':'hide'}" title="{:__('Edit')}" ><i class="fa fa-pencil"></i> {:__('Edit')}</a>
                         <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled {:$auth->check('ygame/fenzu/del')?'':'hide'}" title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
-                        
 
-                        
+
+                        <a class="btn btn-success btn-change btn-start" data-params="action=start" data-url="ygame/record/create" href="javascript:;"><i class="fa fa-play"></i>出发顺序最终确认</a>
 
                         
                     </div>

@@ -154,11 +154,14 @@ class Record extends Backend
             $weigh = 0;
             foreach ($datas as $element) {
                 $weigh = $weigh +1;
+                $strrecoids = '['.json_encode($element['record_ids']).']';
+//                $strrecoids = strval($element['record_ids']);//报错
+//                $strrecoids = implode(',', $element['record_ids']);
                 $fenzumodel = new \app\admin\model\ygame\Fenzu();
                 $fenzumodel->data([
                     'name'=>$element['name'],
                     'project_id'=>$element['project_id'],
-                    'record_ids'=>$newStr = str_replace(['[',']'], "", json_encode($element['record_ids'])),
+                    'record_ids'=> $strrecoids,
                     'zucount'=>'1',
                     'weigh'=>$weigh,
                     'personcount'=>$element['personcount']

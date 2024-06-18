@@ -1,4 +1,50 @@
 define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
+    const urlParams = new URLSearchParams(location.search);
+    var projectid = urlParams.get('project_id');
+
+    function isArray(it) {
+        if (it instanceof Array){
+            return true;
+        }
+            return false;
+    }
+    function mj_rowWithid(rows,idd) {
+        for (var i=0; i<rows.length; i++){
+            var row =rows[i];
+            // console.log('row.id:'+row.id+'   idd:'+idd);
+            if (row.id==idd){
+                // console.log('发现');
+                return row;
+            }
+        }
+        // console.log("mj_rowWithid：rows 中未找到idd");
+        // console.log('idd:'+idd);
+        // console.log('rows:'+JSON.stringify(rows));
+        return null;
+    }
+    function mj_namesWithids(rows,idsarr) {
+        if (!isArray(idsarr)){
+            console.log("idsarr！！不是数组")
+            var row = mj_rowWithid(idsarr);
+            if (row == null){
+                return  idsarr;
+            }else{
+                return row.name;
+            }
+            return arrnames;
+        }
+        //
+        var  arrnames=[];
+        idsarr.forEach(function (idd) {
+            var row = mj_rowWithid(rows,idd);
+            if (row == null){
+                arrnames.push(idd);
+            }else{
+                arrnames.push(row.name);
+            }
+        });
+        return arrnames;
+    }
 
     var Controller = {
         index: function () {
@@ -14,7 +60,26 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     table: 'ygame_fenzu',
                 }
             });
-
+            // 请求groups 设置动态列
+            var records;
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "ygame/record/index",
+                data: {
+                    project_id: 2
+                },
+                async:false,
+                success: function (data) {
+                    // console.log('group:::::::')
+                    console.log(data)
+                    records = data;
+                    // records.rows.forEach(function (row) {
+                    // });
+                },
+                error: function (e) {
+                    layer.msg(e.error);
+                }});
             var table = $("#table");
 
             // 初始化表格
@@ -22,6 +87,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
                 pk: 'id',
                 sortName: 'weigh',
+                sortOrder: 'asc',
                 // fixedColumns: true,
                 fixedRightNumber: 1,
                 columns: [
@@ -39,7 +105,24 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'zucount', title: __('Zucount')},
                         {field: 'beizhu', title: __('Beizhu'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
                         {field: 'project_id', title: __('Project_id')},
-                        {field: 'record_ids', title: __('Record_ids'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
+                        {field: 'record_ids', title: __('Record_ids'),align:"left", operate: 'LIKE', table: table, class: 'autocontent', formatter: function (value,row,index) {
+
+
+                            if (value==null || value == '')
+                                return '';
+                            // 组次 12  出发顺序1234
+                                var str = '';//"顺序：1 ,2 ,3... <br>";
+                                var arr= JSON.parse(value);
+                                for (var i =0;i<arr.length; i++){
+                                    str = str + '组次' + (i+1) +': ';
+                                    var names = mj_namesWithids(records.rows,arr[i]);
+                                    if (isArray(names)){
+                                        names = names.join('    ,');
+                                    }
+                                    str = str+ names +'<br>'
+                                }
+                                return str;
+                            }},
                         {field: 'rule', title: __('Rule'), searchList: {"0":__('Rule 0'),"1":__('Rule 1'),"2":__('Rule 2'),"3":__('Rule 3')}, formatter: Table.api.formatter.normal},
                         {field: 'weigh', title: __('Weigh'), operate: false},
                         //{field: 'group.group_name', title: __('Group.group_name'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
@@ -63,14 +146,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                         Layer.alert("接收到回传数据：" + JSON.stringify(data), {title: "回传数据"});
                                     },
                                     visible: function (row) {
+                                        if (row.juesai == '0'){
+                                            return false;
+                                        }
                                         //返回true时按钮显示,返回false隐藏
                                         return true;
                                     }
                                 },
                                 {
                                     name: 'ajax',
-                                    text: __('变更批次数'),
-                                    title: __('变更批次数'),
+                                    text: __('变更组次数'),
+                                    title: __('变更组次数'),
                                     classname: 'btn btn-xs btn-success btn-magic btn-ajax',
                                     icon: 'fa fa-magic',
                                     url: 'example/bootstraptable/detail',
@@ -96,6 +182,118 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 为表格绑定事件
             Table.api.bindevent(table);
+
+            // 启动按钮
+            $(document).on("click", ".btn-start", function () {
+                //在table外不可以使用添加.btn-change的方法
+                //只能自己调用Table.api.multi实现
+                //如果操作全部则ids可以置为空
+
+                layer.confirm('生成新的日程表数据，会覆盖之后的所有流程操作！',
+                    {btn:['确定','取消']},
+                    function (index) {
+                        layer.close(index);
+
+
+                        //  构造新数据，存入数据库（数据）
+                        /*
+
+
+                         */
+                        newzubies = mj_newzubies(groupsdata.rows);
+                        // Toastr.success(newzubies.toString());
+
+                        var dataa = table.bootstrapTable('getData');
+                        var oldzubies = mj_zubies();
+                        dataa.forEach(function (rowxxx) {
+                            rowxxx.idcard;
+                            rowxxx.group_ids;
+                            var rowgroupname = '';
+                            if (rowxxx.group_ids != null && rowxxx.group_ids != ''){
+                                console.log(rowxxx.group_ids);
+                                var groupids = rowxxx.group_ids.split(',');
+                                groupids.forEach(function (rowxid) {
+                                    groupsdata.rows.forEach(function (rowy1) {
+                                        if (rowy1.id == rowxid){
+                                            var newzubie = mj_newzubie(rowxxx.idcard,rowy1.group_name)
+                                            var arr= newzubies[newzubie];
+                                            arr.push(rowxxx.id)
+                                        }
+                                    });
+                                    // rowx1==
+                                });
+                            }
+
+
+                        });
+                        console.log('##########');
+                        console.log(newzubies)
+
+                        //生成报文格式 用于存入数据库
+                        var fenzus = [];
+                        Object.keys(newzubies).forEach(function(key){
+                            var arr = newzubies[key];
+                            if (arr.length>0){
+                                var fenzu = {};
+                                fenzu['name'] = key;
+                                fenzu['record_ids'] = arr;
+                                fenzu['personcount'] = arr.length;
+                                fenzu['project_id'] = projectid;
+                                // fenzu['group_id'] = ;
+                                // fenzu['zubie_id'] = ;
+                                fenzus.push(fenzu);
+                            }
+                        });
+                        var str = JSON.stringify(fenzus);
+                        console.log(str)
+
+                        // 请求 创建 fenzu表 日程表
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "ygame/record/creatNewFenzuModels",
+                            data: {
+                                project_id: projectid,
+                                rows:str
+                            },
+                            async:false,
+                            success: function (data) {
+                                layer.msg('成功');
+                                console.log('group！！！！！')
+                                console.log(data)
+                                // data.rows.forEach(function (rowww) {
+                                //     // console.log(rowww.group_name)
+                                // });
+                                // location.href = 'ygame/fenzu/index?project_id='+projectid;
+
+                                Fast.api.open('ygame/fenzu/index?project_id='+projectid, '日程表', {
+                                    callback: function (data) {
+                                        // 回调函数，可以在此处理返回的数据
+                                    }
+                                });
+                            },
+                            error: function (e) {
+                                console.log('group???????')
+                                Toastr.error(e.error);
+                            }});
+                        // window.location.href = 'ygame/fenzu/index';
+
+                        // Fast.api.open('ygame/fenzu/index', '跳转到其他控制器', {
+                        //     callback: function (data) {
+                        //         // 回调函数，可以在此处理返回的数据
+                        //     }
+                        // });
+                    },
+                    function (index) {
+                        layer.close(index);
+                        Toastr.error('取消');
+                    })
+
+                // Toastr.success("dfsdfdfsdfsdfs");
+                var ids = Table.api.selectedids(table);
+                Toastr.success(ids);
+                Table.api.multi("changestatus", ids.join(","), table, this);
+            });
         },
         add: function () {
             Controller.api.bindevent();
