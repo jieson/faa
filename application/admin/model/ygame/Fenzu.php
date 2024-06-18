@@ -27,6 +27,7 @@ class Fenzu extends Model
     protected $append = [
         'zubie_id_text',
         'juesai_text',
+        'pg_recordids',
         'rule_text'
     ];
     
@@ -79,7 +80,11 @@ class Fenzu extends Model
         return isset($list[$value]) ? $list[$value] : '';
     }
 
-
+    public function getPgRecordidsAttr($value, $data)
+    {
+        $value = $value ? $value : (isset($data['record_ids']) ? $data['record_ids'] : '');
+        return str_replace(['[',']'],'',$value);
+    }
 
 
     public function group()
