@@ -29,6 +29,14 @@ class Mjtest extends Model
     ];
     
 
+    protected static function init()
+    {
+        self::afterInsert(function ($row) {
+            $pk = $row->getPk();
+            $row->getQuery()->where($pk, $row[$pk])->update(['weigh' => $row[$pk]]);
+        });
+    }
+
     
 
 
@@ -37,8 +45,8 @@ class Mjtest extends Model
 
 
 
-    public function user()
+    public function record()
     {
-        return $this->belongsTo('User', 'leader_id', 'id', [], 'LEFT')->setEagerlyType(0);
+        return $this->hasOne('app\admin\model\ygame\Record', 'record_ids', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

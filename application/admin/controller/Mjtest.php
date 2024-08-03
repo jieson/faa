@@ -51,14 +51,14 @@ class Mjtest extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
 
             $list = $this->model
-                    ->with(['user'])
+                    ->with(['record'])
                     ->where($where)
                     ->order($sort, $order)
                     ->paginate($limit);
 
             foreach ($list as $row) {
                 
-                $row->getRelation('user')->visible(['username','nickname','mobile']);
+                
             }
 
             $result = array("total" => $list->total(), "rows" => $list->items());
