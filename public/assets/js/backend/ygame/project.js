@@ -89,7 +89,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     classname: 'btn btn-xs btn-success btn-dialog',
                              //       extend:'data-area=\'["1100px","700px"]\'',
                                     icon: 'fa fa-folder-o',
-                                    url: 'ygame/record/index?project_id={id}'
+                                    url: 'ygame/fenzu/index?project_id={id}'
                                 },
                                 {
                                     name: 'detail',

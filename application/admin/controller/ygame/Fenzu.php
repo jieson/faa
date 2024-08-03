@@ -166,5 +166,93 @@ class Fenzu extends Backend
 ////        return parent::add();
 //        $this->success();
 //    }
+    /**
+     * 编辑
+     *
+     * @param $ids
+     * @return string
+     * @throws DbException
+     * @throws \think\Exception
+     */
+    public function edit($ids = null)
+    {
+        $row = $this->model->get($ids);
+        if (!$row) {
+            $this->error(__('No Results were found'));
+        }
+        $adminIds = $this->getDataLimitAdminIds();
+        if (is_array($adminIds) && !in_array($row[$this->dataLimitField], $adminIds)) {
+            $this->error(__('You have no permission'));
+        }
+        if (false === $this->request->isPost()) {// 第一次进入页面
+            $arr = $row->pgRecordids;
+            $recordRows = \app\admin\model\ygame\Record::all($arr);
+            //
+            $names= array_map(function ($record){
+                return $record->name;
+            },$recordRows);
+            var_dump($names);
+
+            //
+//            $obj = $recordRows.find(obj => obj.id === 5);
+////            $obj =
+//            var_dump($obj);
+//            var_dump($recordRows);
+            $this->view->assign('recordRows', $recordRows);
+            $this->view->assign('row', $row);
+            return $this->view->fetch();
+        }
+        $params = $this->request->post('row/a');
+        if (empty($pams)) {
+            $this->error(__('Parameter %s can not be empty', ''));
+        }
+        $params = $this->preExcludeFields($params);
+
+        // 改造record_ids
+        $idss = $params['record_ids'];
+        $idssarr =  json_decode('['.$params['record_ids'].']',true);
+//        $params['record_ids'] = '[['.$idss.']]';
+
+        $oldidsstir = $row->record_ids;
+        $oldids = json_decode($oldidsstir,true);
+//        var_dump($oldids);
+        $index = 0;
+        for ($i=0; $i<count($oldids) ; $i++) {
+            $oneArr = $oldids[$i];
+            var_dump($oneArr);
+            for ($j=0; $j<count($oneArr) ; $j++) {
+//        var_dump($oneArr[$j]);
+//        $oneArr[$j] = 22;//更改了 oneArr， 但是oldids没变？
+                $oldids[$i][$j] = $idssarr[$index];
+//        var_dump($oneArr[$j]);
+                $index++;
+            }
+        }
+//        var_dump($oldids);
+        $params['record_ids'] = json_encode($oldids) ;
+
+
+//        var_dump($oldids);
+
+        $result = false;
+        Db::startTrans();
+        try {
+            //是否采用模型验证
+            if ($this->modelValidate) {
+                $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+                $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.edit' : $name) : $this->modelValidate;
+                $row->validateFailException()->validate($validate);
+            }
+            $result = $row->allowField(true)->save($params);
+            Db::commit();
+        } catch (ValidateException|PDOException|Exception $e) {
+            Db::rollback();
+            $this->error($e->getMessage());
+        }
+        if (false === $result) {
+            $this->error(__('No rows were updated'));
+        }
+        $this->success();
+    }
 
 }

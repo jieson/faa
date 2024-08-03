@@ -96,7 +96,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'id', title: __('Id')},
                         {field: 'date', title: __('Date'), operate:'RANGE', addclass:'datetimerange', autocomplete:false},
                         {field: 'starttime', title: __('Starttime')},
-                        {field: 'timerange', title: __('Timerange'), operate: 'LIKE'},
+                        {field: 'endtime', title: __('Endtime'), operate: 'LIKE'},
                         {field: 'name', title: __('Name'), operate: 'LIKE'},
                         // {field: 'group_id', title: __('Group_id')},
                         // {field: 'zubie_id', title: __('Zubie_id'), searchList: {"0":__('Zubie_id 0'),"1":__('Zubie_id 1'),"2":__('Zubie_id 2'),"3":__('Zubie_id 3'),"4":__('Zubie_id 4')}, formatter: Table.api.formatter.normal},
@@ -155,11 +155,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 },
                                 {
                                     name: 'ajax',
-                                    text: __('变更组次数'),
-                                    title: __('变更组次数'),
+                                    text: __('根据组次数重新分配选手'),
+                                    title: __('根据组次数重新分配选手'),
                                     classname: 'btn btn-xs btn-success btn-magic btn-ajax',
                                     icon: 'fa fa-magic',
-                                    url: 'example/bootstraptable/detail',
+                                    url: 'ygame/fenzu/resetXunshou',
                                     confirm: '确认发送',
                                     success: function (data, ret) {
                                         Layer.alert(ret.msg + ",返回数据：" + JSON.stringify(data));
@@ -167,8 +167,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                         //return false;
                                     },
                                     error: function (data, ret) {
+
+                                        Layer.alert("还未实现");
                                         console.log(data, ret);
-                                        Layer.alert(ret.msg);
+                                        // Layer.alert(ret.msg);
                                         return false;
                                     }
                                 }
@@ -179,7 +181,32 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     ]
                 ]
             });
+            // //当表格数据加载完成时
+            table.on('load-success.bs.table', function (e, data) {
+                //这里可以获取从服务端获取的JSON数据
+                // console.log("on  table!!!");
+                // console.log(e);
+                // console.log(data.groups);
 
+                //这里我们手动设置底部的值
+                // $("#money").text(data.extend.money);
+                // $("#price").text(data.extend.price);
+
+                // $('#table').bootstrapTable('hideColumn', "id");
+
+
+                // $('#table').bootstrapTable('destroy').bootstrapTable;
+
+                //添加这两行后，进入编辑页，row的数据取的值偏了2，原因后查
+                // $('#table').bootstrapTable('append', {name:"颁奖",
+                //     project_id:projectid,
+                //     beizhu:'不可删除这条数据！'
+                // });
+                // $('#table').bootstrapTable('append', {name:"离会",
+                //     project_id:projectid,
+                //     beizhu:'不可删除这条数据！'
+                // });
+            });
             // 为表格绑定事件
             Table.api.bindevent(table);
 
@@ -189,12 +216,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 //只能自己调用Table.api.multi实现
                 //如果操作全部则ids可以置为空
 
-                layer.confirm('生成新的日程表数据，会覆盖之后的所有流程操作！',
+                layer.confirm('最后确认生成出发顺序！',
                     {btn:['确定','取消']},
                     function (index) {
                         layer.close(index);
-
-
+                        $('#table').bootstrapTable('append', {name:"颁奖",
+                            project_id:projectid,
+                            beizhu:''
+                        });
+                        return;
                         //  构造新数据，存入数据库（数据）
                         /*
 

@@ -17,7 +17,7 @@ return [
     'Juesai 1'         => '决赛',
     'Juesai 0'         => '预赛',
     'Personcount'      => '人数',
-    'Zucount'          => '组数',
+    'Zucount'          => '组次数',
     'Beizhu'           => '备注',
     'Project_id'       => '赛事ID',
     'Name'             => '项目 组别',
