@@ -2,6 +2,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
     const urlParams = new URLSearchParams(location.search);
     var projectid = urlParams.get('project_id');
 
+
+    function hasDuplicates(array) {
+        return new Set(array).size !== array.length;
+    }
     function isArray(it) {
         if (it instanceof Array){
             return true;
@@ -44,6 +48,29 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             }
         });
         return arrnames;
+    }
+    function mj_teamidsWithids(rows,idsarr) {
+        if (!isArray(idsarr)){
+            console.log("idsarr！！不是数组")
+            var row = mj_rowWithid(idsarr);
+            if (row == null){
+                return  idsarr;
+            }else{
+                return row.team_id;
+            }
+            return "不是数组";
+        }
+        //
+        var  arrteamids=[];
+        idsarr.forEach(function (idd) {
+            var row = mj_rowWithid(rows,idd);
+            if (row == null){
+                arrteamids.push(idd);
+            }else{
+                arrteamids.push(row.team_id);
+            }
+        });
+        return arrteamids;
     }
 
     var Controller = {
@@ -119,7 +146,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                     if (isArray(names)){
                                         names = names.join('    ,');
                                     }
-                                    str = str+ names +'<br>'
+                                    str = str+ names ;
+                                    // 检查代表队是否重复
+                                    var teamids = mj_teamidsWithids(records.rows,arr[i]);
+                                    if (hasDuplicates(teamids)){
+                                        str = str+ "（！代表队有重复）" ;
+                                    }
+                                    str = str +'<br>';
                                 }
                                 return str;
                             }},
