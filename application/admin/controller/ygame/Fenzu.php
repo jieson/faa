@@ -185,20 +185,50 @@ class Fenzu extends Backend
             $this->error(__('You have no permission'));
         }
         if (false === $this->request->isPost()) {// 第一次进入页面
-            $arr = $row->pgRecordids;
-            $recordRows = \app\admin\model\ygame\Record::all($arr);
-            //
-            $names= array_map(function ($record){
-                return $record->name;
-            },$recordRows);
-            var_dump($names);
+
+            $arr = $row->record_ids;
+            $oldids = json_decode($arr,true);
+            $namess = [];
+            $teamidss= [];
+            $findrepeat = false;
+            for($i = 0; $i<count($oldids); $i++){
+                $recordRows = \app\admin\model\ygame\Record::all($oldids[$i]);
+                $names= array_map(function ($record){
+                    return $record->name;
+                },$recordRows);
+//                var_dump($names);
+
+                $recordRowss[$i] = $recordRows;
+                $namess[$i] = $names;
+
+                //team_id
+                $teamids= array_map(function ($record){
+                    return $record->team_id;
+                },$recordRows);
+                $teamidss[$i] = $teamids;
+                if ( count($teamids) !== count(array_unique($teamids)) ){//有重复数据
+                    $findrepeat = true;
+                }
+            }
+
+            if ($findrepeat){
+                var_dump('有多个同一代表队成员分配在一组');
+                var_dump($namess);
+                var_dump($teamidss);
+            }
+//            $recordRows = \app\admin\model\ygame\Record::all($arr);
+
+            //姓名
 
             //
 //            $obj = $recordRows.find(obj => obj.id === 5);
 ////            $obj =
 //            var_dump($obj);
 //            var_dump($recordRows);
-            $this->view->assign('recordRows', $recordRows);
+            $arrrrr = $row->record_ids;
+            $pgrecordRows = \app\admin\model\ygame\Record::all($arrrrr);
+
+            $this->view->assign('pgrecordRows',$pgrecordRows );
             $this->view->assign('row', $row);
             return $this->view->fetch();
         }

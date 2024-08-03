@@ -13,7 +13,7 @@
         <ul class="row list-inline plupload-preview" id="p-files" data-template="introtpl" data-name="row[intro]"></ul>
 
         <!--请注意 ul和textarea间不能存在其它任何元素，实际开发中textarea应该添加个hidden进行隐藏-->
-        <textarea name="row[introm]" class="form-control" style="margin-top:5px;">[{$row.pg_recordids}]</textarea>
+        <textarea name="row[introm]" class="form-control" style="margin-top:5px;">"{$row.pg_recordids }"</textarea>
 
         <!--这里自定义图片预览的模板 开始-->
         <script type="text/html" id="introtpl">
@@ -21,9 +21,8 @@
                 <a href="<%=fullurl%>" data-url="<%=url%>" target="_blank" class="thumbnail">
                     <img src="<%=fullurl%>" class="img-responsive">
                 </a>
-                <span>"{$recordRows[0]['name']}" </span>
-                <span>"{$recordRows[0]['team_id']}" </span>
-<!--                <span>"{$recordRows[0]['team']}" </span>-->
+                <span>{$pgrecordRows[0]['name']} </span>
+                <span>"{$pgrecordRows[0]['team_id']}" </span>
                 <input type="text" name="row[record_ids无意义][<%=index%>]" class="form-control mb-1" placeholder="请输入文件描述" value=<%=value?value:''%>/>
 <!--                <a href="javascript:;" class="btn btn-danger btn-xs btn-trash"><i class="fa fa-trash"></i></a>-->
             </li>
