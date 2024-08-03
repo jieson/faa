@@ -22,7 +22,7 @@ return [
     // 用户名
     'username'        => Env::get('database.username', 'www_faa_com'),
     // 密码 服务器 jSQ7TKskCcdMiZnN  本地 3hPF5KPLYZdGnc63
-    'password'        => Env::get('database.password', 'jSQ7TKskCcdMiZnN'),
+    'password'        => Env::get('database.password', '3hPF5KPLYZdGnc63'),
     // 端口
     'hostport'        => Env::get('database.hostport', ''),
     // 连接dsn
