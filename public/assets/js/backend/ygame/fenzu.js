@@ -188,21 +188,29 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 },
                                 {
                                     name: 'ajax',
-                                    text: __('根据组次数重新分配选手'),
-                                    title: __('根据组次数重新分配选手'),
+                                    text: __('根据每组人数重新分配选手'),
+                                    title: __('根据每组人数重新分配选手'),
                                     classname: 'btn btn-xs btn-success btn-magic btn-ajax',
                                     icon: 'fa fa-magic',
-                                    url: 'ygame/fenzu/resetXunshou',
+                                    url: 'ygame/fenzu/resetRecordids',
                                     confirm: '确认发送',
                                     success: function (data, ret) {
+                                        console.log('success！！！！！')
                                         Layer.alert(ret.msg + ",返回数据：" + JSON.stringify(data));
                                         //如果需要阻止成功提示，则必须使用return false;
                                         //return false;
                                     },
                                     error: function (data, ret) {
-
-                                        Layer.alert("还未实现");
+                                        console.log('error！！！！！')
                                         console.log(data, ret);
+                                        if (ret.code == 200){
+                                            var table = $("#table");
+                                            table.bootstrapTable('refreshOptions',{pageNumber:1})
+                                            Layer.alert("更新数据");
+                                        }else {
+                                            Layer.alert("还未实现");
+                                        }
+
                                         // Layer.alert(ret.msg);
                                         return false;
                                     }

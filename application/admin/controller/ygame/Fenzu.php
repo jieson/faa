@@ -133,6 +133,110 @@ class Fenzu extends Backend
         $this->success("成功");
     }
 
+    public function resetRecordids($ids = null)
+    {
+        $row = $this->model->get($ids);
+        if (!$row) {
+            $this->error(__('No Results were found'));
+            return;
+        }
+        $adminIds = $this->getDataLimitAdminIds();
+        if (is_array($adminIds) && !in_array($row[$this->dataLimitField], $adminIds)) {
+            $this->error(__('You have no permission'));
+            return;
+        }
+
+
+
+
+/*
+ * 先分，找出重复，跟其余的换
+ */
+        // 改造record_ids
+        $ids = $row->pgrecord_ids;
+        $idssarr =  json_decode('['.$ids.']',true);
+        $recordRows = \app\admin\model\ygame\Record::all($idssarr);
+        $teamids= array_map(function ($record){
+            return $record->team_id;
+        },$recordRows);
+        $personcountinzu = $row->personcountinzu;
+
+        $newteamids= [];
+        for ($i=0; $i<count($teamids) ; $i++) {
+
+            if ($i%$personcountinzu == 0){
+                $newteamids= [];
+            }
+
+            //$id = $idssarr[$i];
+            $teamid=$teamids[$i];
+            $newteamids[$i%$personcountinzu] = $teamid;
+
+
+
+            if ( count($newteamids) != count(array_unique($newteamids)) ){//有重复
+                //找下一个不重复的，交换。
+                for ($j=$i+1; $j<count($teamids); $j++){
+                    $newteamids[$i%$personcountinzu] = $teamids[$j];
+                    if ( count($newteamids) == count(array_unique($newteamids)) ){//无重复
+                        //交换i 和 j
+                        $temp = $teamids[$i];
+                        $teamids[$i] = $teamids[$j];
+                        $teamids[$j] = $temp;
+
+                        $temp2 = $idssarr[$i];
+                        $idssarr[$i] = $idssarr[$j];
+                        $idssarr[$j] =$temp2;
+                    }
+                }
+            }else{
+                //替换往后找， 找不到就结束
+            }
+        }
+
+
+        //一维数组变成二维数组
+        $newidss = [];
+        $count = count($idssarr);
+        $zucount =  intval($count/$personcountinzu) + ($count%$personcountinzu==0?0:1);
+        var_dump($count,$zucount,$personcountinzu);
+        for ($i=0; $i<$zucount ; $i++) {
+            $newidss[$i] = [];
+            $yuxiacount = $count-$personcountinzu*$i;//余下的数量
+            for ($j=0; $j<($personcountinzu<$yuxiacount?$personcountinzu:$yuxiacount) ; $j++) {
+                $newidss[$i][$j] = $idssarr[$personcountinzu*$i+$j];
+            }
+        }
+
+        $params['record_ids'] = json_encode($newidss) ;
+
+
+//        var_dump($oldids);
+
+        $result = false;
+        Db::startTrans();
+        try {
+            //是否采用模型验证
+            if ($this->modelValidate) {
+                $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+                $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.edit' : $name) : $this->modelValidate;
+                $row->validateFailException()->validate($validate);
+            }
+            $result = $row->allowField(true)->save($params);
+            Db::commit();
+        } catch (ValidateException|PDOException|Exception $e) {
+            Db::rollback();
+            $this->error($e->getMessage());
+            return;
+        }
+        if (false === $result) {
+            $this->error(__('No rows were updated'));
+            return;
+        }
+        $this->success();
+//        $this->success();
+    }
+
     // 在你的控制器中找到或添加 add 方法
 //    public function add($ids = null)
 //    {
@@ -191,44 +295,48 @@ class Fenzu extends Backend
             $namess = [];
             $teamidss= [];
             $findrepeat = false;
-            for($i = 0; $i<count($oldids); $i++){
-                $recordRows = \app\admin\model\ygame\Record::all($oldids[$i]);
-                $names= array_map(function ($record){
-                    return $record->name;
-                },$recordRows);
+//            var_dump($oldids);
+            if ($oldids != null && $oldids != ''){
+                for($i = 0; $i<count($oldids); $i++){
+                    $recordRows = \app\admin\model\ygame\Record::all($oldids[$i]);
+                    $names= array_map(function ($record){
+                        return $record->name;
+                    },$recordRows);
 //                var_dump($names);
 
-                $recordRowss[$i] = $recordRows;
-                $namess[$i] = $names;
+                    $recordRowss[$i] = $recordRows;
+                    $namess[$i] = $names;
 
-                //team_id
-                $teamids= array_map(function ($record){
-                    return $record->team_id;
-                },$recordRows);
-                $teamidss[$i] = $teamids;
-                if ( count($teamids) !== count(array_unique($teamids)) ){//有重复数据
-                    $findrepeat = true;
+                    //team_id
+                    $teamids= array_map(function ($record){
+                        return $record->team_id;
+                    },$recordRows);
+                    $teamidss[$i] = $teamids;
+                    if ( count($teamids) !== count(array_unique($teamids)) ){//有重复数据
+                        $findrepeat = true;
+                    }
                 }
-            }
 
-            if ($findrepeat){
-                var_dump('有多个同一代表队成员分配在一组');
-                var_dump($namess);
-                var_dump($teamidss);
-            }
+                if ($findrepeat){
+                    var_dump('有多个同一代表队成员分配在一组');
+                    var_dump($namess);
+                    var_dump($teamidss);
+                }
 //            $recordRows = \app\admin\model\ygame\Record::all($arr);
 
-            //姓名
+                //姓名
 
-            //
+                //
 //            $obj = $recordRows.find(obj => obj.id === 5);
 ////            $obj =
 //            var_dump($obj);
 //            var_dump($recordRows);
-            $arrrrr = $row->record_ids;
-            $pgrecordRows = \app\admin\model\ygame\Record::all($arrrrr);
+                $arrrrr = $row->record_ids;
+                $pgrecordRows = \app\admin\model\ygame\Record::all($arrrrr);
 
-            $this->view->assign('pgrecordRows',$pgrecordRows );
+                $this->view->assign('pgrecordRows',$pgrecordRows );
+            }
+
             $this->view->assign('row', $row);
             return $this->view->fetch();
         }

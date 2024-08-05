@@ -164,6 +164,7 @@ class Record extends Backend
                     'record_ids'=> $strrecoids,
                     'zucount'=>'1',
                     'weigh'=>$weigh,
+                    'personcountinzu'=>4,
                     'personcount'=>$element['personcount']
                 ]);
 //                $fenzumodel.record_ids = $element.record_ids;

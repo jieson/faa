@@ -285,7 +285,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
 
                          */
-                        newzubies = mj_newzubies(groupsdata.rows);
+                        newzubies = mj_newzubies(groupsdata.rows);//新组别字典
                         // Toastr.success(newzubies.toString());
 
                         var dataa = table.bootstrapTable('getData');
@@ -300,7 +300,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 groupids.forEach(function (rowxid) {
                                     groupsdata.rows.forEach(function (rowy1) {
                                         if (rowy1.id == rowxid){
-                                            var newzubie = mj_newzubie(rowxxx.idcard,rowy1.group_name)
+                                            var newzubie = mj_newzubie(rowxxx.idcard,rowy1.group_name)  //新组别名
                                             var arr= newzubies[newzubie];
                                             arr.push(rowxxx.id)
                                         }
