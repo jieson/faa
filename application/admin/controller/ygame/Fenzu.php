@@ -209,6 +209,7 @@ class Fenzu extends Backend
         }
 
         $params['record_ids'] = json_encode($newidss) ;
+        $params['zucount'] = $zucount;
 
 
 //        var_dump($oldids);
