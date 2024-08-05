@@ -130,6 +130,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'juesai', title: __('Juesai'), searchList: {"1":__('Juesai 1'),"0":__('Juesai 0')}, formatter: Table.api.formatter.normal},
                         {field: 'personcount', title: __('Personcount')},
                         {field: 'zucount', title: __('Zucount')},
+                        {field: 'personcountinzu', title: __('Personcountinzu')},
                         {field: 'beizhu', title: __('Beizhu'), operate: 'LIKE', table: table, class: 'autocontent', formatter: Table.api.formatter.content},
                         {field: 'project_id', title: __('Project_id')},
                         {field: 'record_ids', title: __('Record_ids'),align:"left", operate: 'LIKE', table: table, class: 'autocontent', formatter: function (value,row,index) {
