@@ -183,6 +183,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                         if (row.juesai == '0'){
                                             return false;
                                         }
+                                        if (row.record_ids==null || row.record_ids==''){
+                                            return false;
+                                        }
                                         //返回true时按钮显示,返回false隐藏
                                         return true;
                                     }

@@ -317,7 +317,7 @@ class Fenzu extends Backend
                         $findrepeat = true;
                     }
                 }
-
+                $this->view->assign('teamids',json_encode($teamidss) );
                 if ($findrepeat){
                     var_dump('有多个同一代表队成员分配在一组');
                     var_dump($namess);
@@ -332,17 +332,27 @@ class Fenzu extends Backend
 ////            $obj =
 //            var_dump($obj);
 //            var_dump($recordRows);
-                $arrrrr = $row->record_ids;
-                $pgrecordRows = \app\admin\model\ygame\Record::all($arrrrr);
+                $arrrrr = $row->pgrecord_ids;
+                $pgrecordRows = new \app\admin\model\ygame\Record;
+                $pgrecordRows = $pgrecordRows->with(['group'])->select($arrrrr);
 
+                //team_id
+                $pgteamids= array_map(function ($record){
+                    return $record->team_id;
+                },$pgrecordRows);
+                $teamidss[$i] = $teamids;
+//                var_dump($pgrecordRows);
+                $pgteamids = json_encode($pgteamids);
+                $this->view->assign('pgteamids',$pgteamids );
                 $this->view->assign('pgrecordRows',$pgrecordRows );
+                var_dump($pgteamids);
             }
 
             $this->view->assign('row', $row);
             return $this->view->fetch();
         }
         $params = $this->request->post('row/a');
-        if (empty($pams)) {
+        if (empty($params)) {
             $this->error(__('Parameter %s can not be empty', ''));
         }
         $params = $this->preExcludeFields($params);
